@@ -4,6 +4,7 @@ import logo from '../../images/full stack logo.png';
 import toggle from '../../images/toggle.png';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import Badge from '@mui/material/Badge';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false); // State for toggling navigation
 
@@ -33,8 +34,20 @@ export default function NavBar() {
         </div>
         <div className={`actions nav-links${isOpen ? 'show' : ''}`}>
           <ul>
-            <li><a href="/cart"><i className="wishlist-icon"></i> <FavoriteBorderOutlinedIcon/></a></li>
-            <li><a href="/wishlist"><i className="cart-icon" ></i> <LocalMallOutlinedIcon/></a></li>
+            <li>
+              <a href="/favorites">
+                <Badge badgeContent={6} color="primary">
+                  <FavoriteBorderOutlinedIcon />
+                </Badge>
+              </a>
+            </li>
+            <li>
+              <a href="/cart"> 
+                <Badge badgeContent={2} color="primary">
+                  <LocalMallOutlinedIcon/>
+                </Badge>
+              </a>
+            </li>
           </ul>
         </div>
       </nav>

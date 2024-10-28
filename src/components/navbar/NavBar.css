@@ -20,6 +20,7 @@
     height: var(--header-height);
     margin: 0rem;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    font-size: 0.8em;
   }
   
   .logo-toggle, .nav-links, .actions {
