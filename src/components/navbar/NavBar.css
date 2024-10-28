@@ -1,1 +1,115 @@
 /* styling for NavBar here */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .head {
+    background-color: #AAAAAA;
+    width: 100%;
+    height: 30px;
+    color: white;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: var(--header-height);
+    margin: 0rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  }
+  
+  .logo-toggle, .nav-links, .actions {
+    flex: 1;
+  }
+  
+  .nav-links ul, .actions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-links li, .actions li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  button {
+    background-image: url('../../images/toggle.png');
+  }
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  a:hover {
+    color: #B17939;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .active {
+    color: #B17939;
+  }
+  
+  .nav-links.show {
+    display: block;
+  }
+  .toogle {
+    display: none;
+    width: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+  
+    .logo-toggle, .nav-links, .actions {
+      flex: 1 0 auto;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+  
+    .nav-links ul, .actions ul {
+      flex-direction: column;
+    }
+  
+    .nav-links li, .actions li {
+      display: block;
+      margin: 5px 0;
+    }
+  
+    .nav-links {
+      display: none; 
+    }
+  
+    .nav-links.show {
+      display: block;
+    }
+    .action.show {
+        display: block;
+       align-items: center;
+    }
+    .toggle {
+      display: flex; /* Show toggle on smaller screens */
+    }
+  
+    .logo-toggle { /* Ensure proper alignment on smaller screens */
+      display: flex;
+      justify-content: space-between;
+    }
+    .toogle {
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        right: 20px;
+    }
+}
