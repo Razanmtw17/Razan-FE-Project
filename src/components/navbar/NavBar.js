@@ -28,7 +28,7 @@ export default function NavBar() {
         <div className={`nav-links ${isOpen ? 'show' : ''}`}> {/* Conditional rendering */}
           <ul>
             <li><a className="active" href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/blog" color='balck'>Blog</a></li>
             <li><a href="/about">About Us</a></li>
           </ul>
         </div>
@@ -37,14 +37,14 @@ export default function NavBar() {
             <li>
               <a href="/favorites">
                 <Badge badgeContent={6} color="primary">
-                  <FavoriteBorderOutlinedIcon />
+                  <FavoriteBorderOutlinedIcon sx={{color: 'black'}}/>
                 </Badge>
               </a>
             </li>
             <li>
               <a href="/cart"> 
                 <Badge badgeContent={2} color="primary">
-                  <LocalMallOutlinedIcon/>
+                  <LocalMallOutlinedIcon sx={{color: 'black'}}/>
                 </Badge>
               </a>
             </li>

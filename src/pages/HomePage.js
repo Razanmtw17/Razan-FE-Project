@@ -1,7 +1,15 @@
 import React from 'react'
-
-export default function HomePage() {
+import HeroSection from '../components/hero/HeroSection';
+import Categories from '../components/categories/Categories';
+import SubCategories from '../components/subcategories/SubCategories';
+import HomeProduct from '../components/homeproduct/HomeProduct';
+export default function HomePage({productList, wishList,setWishList }) {
   return (
-    <div></div>
+    <div>
+        <HeroSection/>
+        <Categories/>
+        <SubCategories/>
+        <HomeProduct productList = {productList}/>
+    </div>
   )
 }

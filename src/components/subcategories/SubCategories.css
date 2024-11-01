@@ -1,0 +1,89 @@
+.subcategorycontainer {
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    justify-content: center;
+}
+.subcategoryitem {
+    
+    width: 380px;
+    height: 600px;
+    padding: 20px;
+    margin-left: 15px;
+    margin-bottom: 25px;
+    position: relative;
+}
+.subcategoryitem:nth-child(1) {
+    background-image: url('../../images/sub\ category\ light.webp');
+    background-size: cover;
+    background-position: center;
+    height: 626px;
+  
+}
+.subcategoryitem:nth-child(1):hover {
+    -webkit-filter: brightness(70%);
+    transition: all 1s ease-in-out;
+}
+.subcategoryitem:nth-child(2) {
+    padding: 0;
+}
+.subcategoryitem:nth-child(3) {
+    padding: 0;
+}
+.subitem {
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 15px;
+}
+.subcategoryitem button {
+    background-image: none;
+    position: absolute;
+    bottom: 20px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color:#43D7D7; 
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-weight: 100;
+}
+.subcategoryitem:nth-child(2) .subitem:nth-child(2) {
+    background-image: url('../../images/sub\ category\ night\ stand.webp');
+  background-size: cover;
+  background-position: center;
+}
+.subcategoryitem:nth-child(2) .subitem:nth-child(2):hover {
+    -webkit-filter: brightness(70%);
+    transition: all 1s ease-in-out;
+}
+.subcategoryitem:nth-child(3) .subitem:nth-child(2):hover {
+    -webkit-filter: brightness(70%);
+    transition: all 1s ease-in-out;
+}
+.subcategoryitem:nth-child(3) .subitem:nth-child(1):hover {
+    -webkit-filter: brightness(70%);
+    transition: all 1s ease-in-out;
+}
+.subcategoryitem:nth-child(3) .subitem:nth-child(1) {
+    background-image: url('../../images/sub\ category\ table.webp');
+  background-size: cover;
+  background-position: center;
+}
+.subcategoryitem:nth-child(3) .subitem:nth-child(2) {
+    background-image: url('../../images/sub\ category\ outdoor\ chair.webp');
+  background-size: cover;
+  background-position: center;
+}
+.subitem p {
+    color: #B17939;
+}
+.subitem h2 {
+    font-weight: 400;
+}

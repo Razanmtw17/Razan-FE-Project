@@ -1,0 +1,43 @@
+.hero-section {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+.hero-section img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease-in-out;
+}
+
+.slide-right-enter {
+    transform: translateX(100%);
+}
+.slide-right-enter-active {
+    transform: translateX(0);
+}
+.hero-section .text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white; 
+    font-size: 48px;
+    font-weight: 400;
+}
+.hero-section button {
+    background-color: #43D7D7; 
+    border: none;
+    color: white;
+    padding: 15px 72px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;  
+    background-image: none;
+    
+}

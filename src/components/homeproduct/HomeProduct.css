@@ -1,0 +1,77 @@
+.productcontainer {
+    width: 80%;
+    margin: auto; /*to mmake it centerd*/
+}
+.cards {
+    position: relative;
+    text-align: left;
+    margin-left: 15px ;
+    padding-bottom: 0;
+    height: 70%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+}
+.cards img {
+    width: 100%;
+    height: 70%;
+    padding: 0;
+    margin: 0%;
+    
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
+    grid-gap: 10px;
+    margin: 10px;
+    margin-bottom: -120px;
+}
+.cartbutton {
+    display: none;
+    background-image: none;
+    position: absolute;
+    bottom: 110px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color:#43D7D7; 
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-weight: 100;
+}
+.icon-circle {
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+    display: none;
+} 
+.subicon {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 290px; 
+    left: 80%;
+}
+.cards:hover .cartbutton  {
+    display: block;
+}
+
+.cards:hover .icon-circle  {
+    display: block;
+}
+.Title {
+    text-align: center;
+    padding-top: 60px;
+}
+.Title p {
+    color: #B17939;
+}
+.Title h2 {
+    font-weight: 400;
+}
+.pagination-container {
+  padding-left: 50%;
+ background-image: none;
+ color: #43D7D7;
+ padding-bottom: 15px;
+}

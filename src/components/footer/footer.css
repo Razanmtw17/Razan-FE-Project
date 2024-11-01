@@ -62,7 +62,9 @@ span {
 .sb_footer-copyright {
     text-align: center;
 }
-
+a {
+    text-decoration: none;
+}
 @media (max-width: 768px) {
     .footer-accordion {
       display: block;
