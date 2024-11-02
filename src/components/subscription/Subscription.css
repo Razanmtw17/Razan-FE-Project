@@ -1,0 +1,26 @@
+.sub .Title p {
+    font-size: 10px;
+}
+.sub .Title h2 {
+    font-size: 50px;
+    font-weight: 300;
+}
+.subscription {
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+.subscription input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(177, 177, 177);
+    width: 400px;
+    padding: 7px ;
+    height: 60px;
+}
+.subscription input[type=button] {
+    padding: 7px ;
+    height: 60px;
+    border: none;
+    border-bottom: 1px solid rgb(177, 177, 177);
+    background-color: transparent;
+    
+}

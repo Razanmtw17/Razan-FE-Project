@@ -54,35 +54,35 @@ export default function HomeProduct({ productList, wishList, setWishList }) {
   return (
     <div className="productcontainer">
       <div className='Title'>
-      <p>TOP CATEGORIES</p>
-      <h2>Perfect For Your House</h2>
+        <p>HOT SALES</p>
+        <h2>Check The Hit Products</h2>
       </div>
-    <br/>
-   <br/>
-   <br/>
+      <br/>
+      <br/>
+      <br/>
 
-   <div className="products">
-        {currentProducts.map((product) => (
-          <div key={product.id} className="cards">
-            <Link to={`products/${product.id}`}>
+      <div className="products">
+          {currentProducts.map((product) => (
+            <div key={product.id} className="cards">
+              <Link to={`products/${product.id}`}>
+                <br /> <br />
+                <img src={product.image} alt="cart" />
+              </Link>
               <br /> <br />
-              <img src={product.image} alt="cart" />
-            </Link>
-            <br /> <br />
-            <div className="contairr">
-              <div className="priceTag">
-                <p>{product.title}</p>
-                <p>Price: {product.price}</p>
-              </div>
+              <div className="contairr">
+                <div className="priceTag">
+                  <p>{product.title}</p>
+                  <p>Price: {product.price}</p>
+                </div>
 
-              <button className="cartbutton">cart</button>
+                <button className="cartbutton">cart</button>
               <div className='subicon'>
-                <div className="icon-circle">
-                  <FavoriteIcon2 />
-                </div>
-                <div className="icon-circle">
-                  <RemoveRedEyeIcon />
-                </div>
+              <div className="icon-circle">
+                <FavoriteIcon2 />
+              </div>
+              <div className="icon-circle">
+                <RemoveRedEyeIcon />
+              </div>
               </div>
             </div>
           </div>
