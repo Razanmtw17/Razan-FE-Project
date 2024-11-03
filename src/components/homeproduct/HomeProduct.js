@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function HomeProduct({ productList, wishList, setWishList }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(4);
+  const [productsPerPage, setProductsPerPage] = useState(12);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1587) {
@@ -64,18 +64,18 @@ export default function HomeProduct({ productList, wishList, setWishList }) {
       <div className="products">
           {currentProducts.map((product) => (
             <div key={product.id} className="cards">
-              <Link to={`products/${product.id}`}>
+              <Link to={`products/${product.productId}`}>
                 <br /> <br />
-                <img src={product.image} alt="cart" />
+                <img src={product.productImage} alt="cart" />
               </Link>
-              <br /> <br />
+              <br /> 
               <div className="contairr">
                 <div className="priceTag">
-                  <p>{product.title}</p>
-                  <p>Price: {product.price}</p>
+                  <p>{product.productName}</p>
+                  <p>Price: {product.productPrice} SAR</p>
                 </div>
 
-                <button className="cartbutton">cart</button>
+                <button className="cartbutton">ADD&nbsp;TO&nbsp;CART</button>
               <div className='subicon'>
               <div className="icon-circle">
                 <FavoriteIcon2 />

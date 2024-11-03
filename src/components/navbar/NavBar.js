@@ -5,46 +5,58 @@ import toggle from '../../images/toggle.png';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import Badge from '@mui/material/Badge';
+import { Link } from "react-router-dom";
+
 export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false); // State for toggling navigation
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('home'); // Set initial active link
 
   const handleToggleClick = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLinkClick = (linkId) => {
+    setActiveLink(linkId);
   };
 
   return (
     <div>
       <marquee className="head">20% off for your first purchase</marquee>
       <nav className="navbar">
-        <div className="logo-toggle"> {/* Combined logo and toggle container */}
+        <div className="logo-toggle">
           <div className="logo">
             <img src={logo} alt="Modern furniture store logo" />
           </div>
-
           <div>
-          <img className = "toogle"src={toggle} onClick={handleToggleClick} width='20px' alt="Menu toggle" />
-          </div>    
+            <img className="toggle" src={toggle} onClick={handleToggleClick} width='20px' alt="Menu toggle" />
+          </div>
         </div>
-        <div className={`nav-links ${isOpen ? 'show' : ''}`}> {/* Conditional rendering */}
+        <div className={`nav-links ${isOpen ? 'show' : ''}`}>
           <ul>
-            <li><a className="active" href="/">Home</a></li>
-            <li><a href="/blog" color='balck'>Blog</a></li>
-            <li><a href="/about">About Us</a></li>
+            <li>
+              <Link to="/" className={`nav-link ${activeLink === 'home' ? 'active' : ''}`} onClick={() => handleLinkClick('home')}>Home</Link>
+            </li>
+            <li>
+              <Link to="/products" className={`nav-link ${activeLink === 'products' ? 'active' : ''}`} onClick={() => handleLinkClick('products')}>Shop</Link>
+            </li>
+            <li>
+              <Link to="/about" className={`nav-link ${activeLink === 'about' ? 'active' : ''}`} onClick={() => handleLinkClick('about')}>About us</Link>
+            </li>
           </ul>
         </div>
-        <div className={`actions nav-links${isOpen ? 'show' : ''}`}>
+        <div className={`actions nav-links ${isOpen ? 'show' : ''}`}>
           <ul>
             <li>
               <a href="/favorites">
                 <Badge badgeContent={6} color="primary">
-                  <FavoriteBorderOutlinedIcon sx={{color: 'black'}}/>
+                  <FavoriteBorderOutlinedIcon sx={{ color: 'black' }} />
                 </Badge>
               </a>
             </li>
             <li>
-              <a href="/cart"> 
+              <a href="/cart">
                 <Badge badgeContent={2} color="primary">
-                  <LocalMallOutlinedIcon sx={{color: 'black'}}/>
+                  <LocalMallOutlinedIcon sx={{ color: 'black' }} />
                 </Badge>
               </a>
             </li>

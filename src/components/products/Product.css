@@ -1,1 +1,85 @@
 /* product styling here */
+.HeadTitle {
+    width: 100%; /* Set the desired width */
+    height: 300px; /* Set the desired height */
+    position: relative; /* Necessary for absolute positioning of the image */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.hh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(40%);
+}
+.HeadTitle h1, .HeadTitle p {
+    z-index: 1;
+    color: white;
+    align-items: center;
+    margin: 5px 0;
+}
+.maincontent {
+  display: flex;
+  border: 1px solid black;
+  height:fit-content ;
+  padding-top: 40px;
+}
+.filter-section {
+  flex: 1;
+  /* Add styles for the filter section */
+  border: 1px solid black;
+}
+
+.product-grid {
+  flex: 2;
+  /* Add styles for the product grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  border: 1px solid black;
+  
+}
+.priceRange {
+    display: inline;
+    width: 110px;
+    height: 30px;
+    margin-top: 15px;
+}
+.product-grid-head {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    border: 1px solid rgb(131, 33, 33);
+}
+.searchandsort {
+    display: flex;
+    margin-left: 3px;
+}
+.product-grid-head p {
+    padding-top: 15px;
+    padding-left: 5px;
+}
+.two-sections {
+   display: flex;
+   flex-direction: column;
+}
+.mapProducts {
+    border: 1px solid rgb(49, 197, 86);
+    width: 95%;
+    margin: auto; /*to mmake it centerd*/
+    height:fit-content ;
+}
+
+@media (max-width: 765px) {
+  /* Styles for screens 765px or smaller */
+  .product-grid-head {
+    /* Apply specific styles here */
+    display: block;
+  }
+  
+}

@@ -37,18 +37,16 @@
     display: inline-block;
     margin: 0 10px;
   }
-  button {
+  .toggle {
     background-image: url('../../images/toggle.png');
   }
   .logo img {
     width: 40px;
     height: 40px;
   }
-  
   a:hover {
     color: #B17939;
   }
-  
   nav a {
     text-decoration: none;
     color: black;
@@ -61,11 +59,10 @@
   .nav-links.show {
     display: block;
   }
-  .toogle {
+  .toggle {
     display: none;
     width: 20px;
   }
-  
   @media (max-width: 768px) {
     .navbar {
       flex-direction: column;
@@ -107,7 +104,7 @@
       display: flex;
       justify-content: space-between;
     }
-    .toogle {
+    .toggle {
         display: flex;
         justify-content: space-around;
         position: absolute;

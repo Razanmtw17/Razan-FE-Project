@@ -4,10 +4,12 @@ import "./App.css";
 import LayOut from "./components/layout/LayOut";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
 function App() {
-  const url1="http://localhost:5125/";
-  const productUrl = "http://localhost:5125/api/v1/products";
-  const url= "https://fakestoreapi.com/products";
+  const url="http://localhost:5125/";
+  const productUrl = "http://localhost:5125/api/v1/Products";
+  const subCategoryUrl = "http://localhost:5125/api/v1/Products/"
+   //const url= "https://fakestoreapi.com/products";
   const [respone, setResponse] = useState("");
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ function App() {
   const [wishList, setWishList] = useState([]);
   function getData() {
     axios
-      .get(url)
+      .get(productUrl)
       .then((response) => {
         setProductList(response.data);
         setLoading(false);
@@ -27,37 +29,52 @@ function App() {
         setLoading(false);
       });
   }
+  function getDatafromServer() {
+    axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data);
+        setResponse(response.data);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }
   useEffect(() => {
+    getDatafromServer()
     getData()
   }, []);
-  // function getDatafromServer() {
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setResponse(respone.data);
-  //     })
-  //     .catch((error) => {
-  //       setError(error);
-  //       setLoading(false);
-  //     });
-  // }
-  // useEffect(() => {
-  //   getDatafromServer()
-  // }, []);
   const router = createBrowserRouter([
     {
-      path:"/",
-      element: <LayOut/>,
+      path: "/",
+      element: <LayOut />,
       children: [
         {
           path: "/",
-          element: <HomePage productList={productList.slice(0, 8)} wishList={wishList}
-          setWishList={setWishList}/>,
-        }
-      ]
-    }
-  ])
+          element: (
+            <HomePage
+              productList={productList.slice(0, 8)}
+              wishList={wishList}
+              setWishList={setWishList}
+            />
+          ),
+        },
+        {
+          path: "/products",
+          element: (
+            <ProductPage
+              productList={productList}
+              setUserInput={setUserInput}
+              userInput={userInput}
+              wishList={wishList}
+              setWishList={setWishList}
+            />
+          ),
+        },
+      ],
+    },
+  ]);
   return (
   <div>
    <RouterProvider router={router} />
