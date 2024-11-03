@@ -24,26 +24,6 @@ export default function Products({productList}) {
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(12);
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth >= 1587) {
-  //       setProductsPerPage(4);
-  //     } else if (window.innerWidth >= 1461) {
-  //       setProductsPerPage(3);
-  //     } else if (window.innerWidth >= 1157) {
-  //       setProductsPerPage(2);
-  //     } else {
-  //       setProductsPerPage(1);
-  //     }
-  //   };
-
-  //   handleResize(); // Initial check
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
   const totalPages = Math.ceil(productList.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -58,6 +38,7 @@ export default function Products({productList}) {
   };
 
   console.log("products:", productList);
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div>
       <div className="HeadTitle">
@@ -103,7 +84,7 @@ export default function Products({productList}) {
           <div className="two-sections">
             <div className="product-grid-head">
               <p>
-                Showing {indexOfFirstProduct+1} - {indexOfLastProduct} of{" "}
+                Showing {indexOfFirstProduct + 1} - {indexOfLastProduct} of{" "}
                 {productList.length} Results
               </p>
               <div className="searchandsort">
@@ -115,8 +96,10 @@ export default function Products({productList}) {
                 >
                   <TextField
                     id="standard-basic"
-                    label="Chair"
+                    label="Search Products"
                     variant="standard"
+                    value={searchTerm} 
+                    onChange={(event) => setSearchTerm(event.target.value)}
                     slotProps={{
                       input: {
                         endAdornment: (
@@ -154,7 +137,7 @@ export default function Products({productList}) {
             </div>
             <div className="mapProducts">
               <div className="products">
-                {currentProducts.map((product) => (
+                {currentProducts.filter((product) => product.productName.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
                   <div key={product.id} className="cards">
                     <Link to={`products/${product.productId}`}>
                       <br /> <br />
