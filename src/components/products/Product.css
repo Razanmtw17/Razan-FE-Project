@@ -74,7 +74,74 @@
     margin: auto; /*to mmake it centerd*/
     height:fit-content ;
 }
+/*CARD STYLE*/
+.productcontainer2 {
+    width: 80%;
+    margin: auto; /*to mmake it centerd*/
+}
+.cards2 {
+    position: relative;
+    text-align: left;
+    margin-left: 15px ;
+    padding-bottom: 20px;
+    height: 70%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.cards2 img {
+    width: 100%;
+    height: 70%; 
+    
+}
+.products2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
+    grid-gap: 10px;
+    margin: 10px;
+    margin-bottom: -120px;
+}
+.cartbutton2 {
+    display: none;
+    background-image: none;
+    position: absolute;
+    bottom: 90px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color:#43D7D7; 
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-weight: 100;
+}
+.icon-circle2 {
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+    display: none;
+} 
+.subicon2 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 230px; 
+    left: 80%;
+}
+.cards2:hover .cartbutton2  {
+    display: block;
+}
 
+.cards2:hover .icon-circle2  {
+    display: block;
+}
+.pagination-container2 {
+  padding-left: 20%;
+ background-image: none;
+ color: #43D7D7;
+ padding-bottom: 15px;
+}
+.priceTag2 p {
+    padding-top: 1px;
+}
 @media (max-width: 765px) {
   /* Styles for screens 765px or smaller */
   .product-grid-head {

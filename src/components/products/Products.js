@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Pagination } from "@mui/material";
+import { colors, Pagination } from "@mui/material";
 import FavoriteIcon2 from "@mui/icons-material/Favorite";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Link } from "react-router-dom";
@@ -17,28 +17,57 @@ import Select from "@mui/material/Select";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
+import DeleteIcon from "@mui/icons-material/Delete";
 export default function Products({productList}) {
   const [sort, setSort] = React.useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(12);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+
   const handleChange = (event) => {
     setSort(event.target.value);
   };
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(12);
-  const totalPages = Math.ceil(productList.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
-  const currentProducts = productList.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
 
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
   };
 
-  console.log("products:", productList);
-  const [searchTerm, setSearchTerm] = useState("");
+  const totalPages = Math.ceil(productList.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;   
+
+
+  const filteredProducts = productList.slice(indexOfFirstProduct, indexOfLastProduct).filter((product) => {
+    const productPrice = parseFloat(product.productPrice);
+    if (minPrice && maxPrice) {
+      return productPrice >= minPrice && productPrice <= maxPrice;
+    } else if (minPrice) {
+      return productPrice >= minPrice;
+    } else if (maxPrice) {
+      return productPrice <= maxPrice;
+    } else {
+      return   
+ product.productName.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+  });
+
+  const currentProducts = sort
+    ? filteredProducts.sort((a, b) => {
+        if (sort === 1) {
+          return a.productName.localeCompare(b.productName); // Alphabetically A-Z
+        } else if (sort === 2) {
+          return b.productName.localeCompare(a.productName); // Alphabetically Z-A
+        } else if (sort === 3) {
+          return a.productPrice - b.productPrice; // Price low to high
+        } else if (sort === 4) {
+          return b.productPrice - a.productPrice; // Price high to low
+        } else {
+          return 0; // No sorting or default sorting
+        }
+      })
+    : filteredProducts;
   return (
     <div>
       <div className="HeadTitle">
@@ -73,9 +102,26 @@ export default function Products({productList}) {
                 Price
               </AccordionSummary>
               <AccordionDetails>
-                <p>The highest price to lowest price</p>
-                $ <input className="priceRange" type="text" />{" "}
-                <input className="priceRange" type="text" />
+                <p>The highest price to lowest price</p>${" "}
+                <input
+                  className="priceRange"
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                />
+                {" - "}
+                <input
+                  className="priceRange"
+                  type="number" // Restrict input to numbers
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                />
+                
+                  <DeleteIcon
+                    onClick={() => setMinPrice("") && setMaxPrice("")}
+                    sx={{color: 'red'}}
+                  />
+                
               </AccordionDetails>
             </Accordion>
           </div>
@@ -98,7 +144,7 @@ export default function Products({productList}) {
                     id="standard-basic"
                     label="Search Products"
                     variant="standard"
-                    value={searchTerm} 
+                    value={searchTerm}
                     onChange={(event) => setSearchTerm(event.target.value)}
                     slotProps={{
                       input: {
@@ -118,7 +164,7 @@ export default function Products({productList}) {
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={sort}
-                      label="Age"
+                      label="Sort"
                       onChange={handleChange}
                     >
                       <MenuItem
@@ -136,37 +182,43 @@ export default function Products({productList}) {
               </div>
             </div>
             <div className="mapProducts">
-              <div className="products">
-                {currentProducts.filter((product) => product.productName.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
-                  <div key={product.id} className="cards">
-                    <Link to={`products/${product.productId}`}>
-                      <br /> <br />
-                      <img src={product.productImage} alt="cart" />
-                    </Link>
-                    <br />
-                    <div className="contairr">
-                      <div className="priceTag">
-                        <p>{product.productName}</p>
-                        <p>Price: {product.productPrice} SAR</p>
-                      </div>
-
-                      <button className="cartbutton">
-                        ADD&nbsp;TO&nbsp;CART
-                      </button>
-                      <div className="subicon">
-                        <div className="icon-circle">
-                          <FavoriteIcon2 />
+              <div className="products2">
+                {currentProducts
+                  .filter((product) =>
+                    product.productName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  )
+                  .map((product) => (
+                    <div key={product.id} className="cards2">
+                      <Link to={`products/${product.productId}`}>
+                        <br /> <br />
+                        <img src={product.productImage} alt="cart" />
+                      </Link>
+                      <br />
+                      <div className="contairr2">
+                        <div className="priceTag2">
+                          <p>{product.productName}</p>
+                          <p>Price: {product.productPrice} SAR</p>
                         </div>
-                        <div className="icon-circle">
-                          <RemoveRedEyeIcon />
+
+                        <button className="cartbutton2">
+                          ADD&nbsp;TO&nbsp;CART
+                        </button>
+                        <div className="subicon2">
+                          <div className="icon-circle2">
+                            <FavoriteIcon2 />
+                          </div>
+                          <div className="icon-circle2">
+                            <RemoveRedEyeIcon />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
               {totalPages > 1 && ( // Conditionally render Pagination if needed
-                <div className="pagination-container">
+                <div className="pagination-container2">
                   <Pagination
                     shape="rounded"
                     count={totalPages}

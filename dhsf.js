@@ -1,323 +1,232 @@
-const list = [
-  {
-    subCategoryId: "2815fc3f-115a-427b-8d32-9a6de44b56b3",
-    subCategoryName: "Toys",
-    productId: "2c13cfbc-ff57-49be-8961-47838bf59551",
-    productName: "Robert 100-Piece Building Blocks Set",
-    addedDate: "2024-11-02T20:44:52.13389Z",
-    productColor: "Multicolour",
-    description:
-      "Consisting of attractive building blocks in different shapes and sizes, this set is sure to keep your kid engaged for long hours. Made from wood, this set flaunts a painted finish that lends it a dash of finesse. Durable and modern, this set is a must-have essential for one's playroom or nursery.",
-    sku: 8,
-    productPrice: 104,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/160897613-160897613-HC240419_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "2815fc3f-115a-427b-8d32-9a6de44b56b3",
-    subCategoryName: "Toys",
-    productId: "ce0423b7-c2b9-457b-9f82-35a9baf1e487",
-    productName: "Tessa Tent",
-    addedDate: "2024-11-02T20:45:51.597709Z",
-    productColor: "Pink",
-    description:
-      "Encourage your kid's creativity with this adorable tent. The tent is made of fabric and has the look of a circus tent with a pretty printed design. It will elevate the look of your kid's room and add value to her playtime. You can machine wash the tent for upkeep.",
-    sku: 8,
-    productPrice: 109,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/162461682-162461682-HC15062020_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "4326dfa0-36d9-4a56-8d8f-69b8297e2856",
-    subCategoryName: "Rugs & Carpets",
-    productId: "af165cae-b8e0-4df5-b8bf-9a7cb059072e",
-    productName: "Play Rug - 120x160 cm",
-    addedDate: "2024-11-02T20:38:34.169088Z",
-    productColor: "Multicolour",
-    description:
-      "This rug is a great way to add colour and style to your kid's room. It is made of soft and durable polyester and features a fun design. The rug is also machine-washable, making it easy to keep clean.",
-    sku: 8,
-    productPrice: 111,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/166154527-166154527-HC10232023_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "4326dfa0-36d9-4a56-8d8f-69b8297e2856",
-    subCategoryName: "Rugs & Carpets",
-    productId: "46cfae7e-b11c-4d9a-97b7-d16b26ac47b2",
-    productName: "Ozzie Space Printed Rug - 120x160 cms",
-    addedDate: "2024-11-02T20:40:23.34643Z",
-    productColor: "Multicolour",
-    description:
-      "Inspired by constellations and space travel, this printed rug makes for a fabulous addition in your child’s bedroom. Rectangular in shape, this rug is made from quality nylon fabric and is designed with adorable space themed printed motifs all over.",
-    sku: 8,
-    productPrice: 119,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/161820908-161820908-HC220819_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "2815fc3f-115a-427b-8d32-9a6de44b56b3",
-    subCategoryName: "Toys",
-    productId: "4a4cd7e0-dc14-4072-ace3-926095543c98",
-    productName: "Hadley Big Bear Soft Toy - 100 cm ",
-    addedDate: "2024-11-02T20:51:21.68974Z",
-    productColor: "Khaki",
-    description:
-      "A perfect toy for when playing house, your daughter will love this kitchen set. Made from pinewood, this set features all the basic necessities and will add much depth to her imagination and playtime.",
-    sku: 8,
-    productPrice: 127,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/163888319-163888319-HC08112021_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "4326dfa0-36d9-4a56-8d8f-69b8297e2856",
-    subCategoryName: "Rugs & Carpets",
-    productId: "cadae189-6bbd-49ff-90e5-dc79f1fe0deb",
-    productName: "Galaxy Peri Playmat - 120x160 cm",
-    addedDate: "2024-11-02T20:42:08.428272Z",
-    productColor: "Multicolour",
-    description:
-      "Designed with a galaxy print against a solid backdrop, this playmat is a multi-functional pick for your child. It is made using durable and quality polyester in a rectangular shape. The playmat can be used indoors as well as outdoors and can be maintained with ease.",
-    sku: 8,
-    productPrice: 134,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/164830899-164830899-HC17082022_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "4326dfa0-36d9-4a56-8d8f-69b8297e2856",
-    subCategoryName: "Rugs & Carpets",
-    productId: "ed761589-4ced-4e62-9368-de61053b63e4",
-    productName: "Animals Hopscotch Peri Playmat - 120x160 cm",
-    addedDate: "2024-11-02T20:39:33.455739Z",
-    productColor: "Multicolour",
-    description:
-      "Grab this multipurpose playmat for your child. The appealing colours along with the animal and numbers print make this piece a must-buy for your little one. Further, the mat is made using durable and quality polyester in a rectangular shape.",
-    sku: 8,
-    productPrice: 134,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/164830896-164830896-HC17082022_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "4326dfa0-36d9-4a56-8d8f-69b8297e2856",
-    subCategoryName: "Rugs & Carpets",
-    productId: "8bbea1f6-5b2f-48c8-8980-1f2ecb1e1089",
-    productName: "World Map Peri Playmat - 120x160 cm",
-    addedDate: "2024-11-02T20:41:27.775063Z",
-    productColor: "Multicolour",
-    description:
-      "Showcasing a world map print, this playmat is a multi-functional pick for your child. It is made using durable and quality polyester in a rectangular shape. The playmat can be used indoors as well as outdoors and can be maintained with ease.",
-    sku: 8,
-    productPrice: 134,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/164830898-164830898-HC17082022_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "d70275f3-b435-4c02-8a6f-73005083834e",
-    subCategoryName: "Canopies & Accessories",
-    productId: "24ccdb9a-4c90-4c14-a602-2d6265a17eab",
-    productName: "Umbrella Flat Base ",
-    addedDate: "2024-11-02T21:26:57.824532Z",
-    productColor: "Black",
-    description:
-      "A perfect pick, this umbrella flat base is apt for your next backyard barbecue party. The adjustable height will provide a desirable height while it can be placed on any even surface owing to its flat base. Also, the base can be wiped clean for maintenance.",
-    sku: 8,
-    productPrice: 137,
-    weight: 2,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/158667860-158667860-HCB845FEB17_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "730f54d3-b589-4934-a4ba-937dca69d0c8",
-    subCategoryName: "Lounges & Swings",
-    productId: "33c070a6-798b-434d-8a2b-3e0303294881",
-    productName: "Ray Outdoor Relaxing Chair",
-    addedDate: "2024-11-02T21:17:43.666171Z",
-    productColor: "White",
-    description:
-      "Indulge in self-time or a conversation with someone special by sitting on this comfortable outdoor chair. It features an ergonomic and trendy design with a breathable woven construction. The foldable design further makes it a space-saving pick.",
-    sku: 8,
-    productPrice: 149,
-    weight: 16,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/165710827-165710827-HC02102023_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "2815fc3f-115a-427b-8d32-9a6de44b56b3",
-    subCategoryName: "Toys",
-    productId: "7f8df5b7-052a-40a3-9961-dff40e41a7eb",
-    productName: "Kimberley Kitchen Toy",
-    addedDate: "2024-11-02T20:49:03.292885Z",
-    productColor: "Multicolour",
-    description:
-      "A perfect toy for when playing house, your daughter will love this kitchen set. Made from pinewood, this set features all the basic necessities and will add much depth to her imagination and playtime.",
-    sku: 8,
-    productPrice: 194,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/162212811-162212811-HC29012020_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "d70275f3-b435-4c02-8a6f-73005083834e",
-    subCategoryName: "Canopies & Accessories",
-    productId: "9174c473-5af3-4a99-bbb9-3092af54fe48",
-    productName: "Umbrella Base - Set of 4 ",
-    addedDate: "2024-11-02T21:26:14.582618Z",
-    productColor: "Black",
-    description:
-      "With a durable make, this umbrella base is a fine quality buy for your place. Perfect for outdoors, this base is portable and versatile.",
-    sku: 8,
-    productPrice: 239,
-    weight: 9,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/158667862-158667862-HCB568SEP16_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "73c34d9b-d6fe-4fdb-b4b5-a2f7c6ac3488",
-    subCategoryName: "Night Stands",
-    productId: "735fa065-a423-4cab-a33d-be7971602add",
-    productName: "Todd Nightstand",
-    addedDate: "2024-11-02T21:46:55.74223Z",
-    productColor: "Oak",
-    description:
-      "This nightstand is a stylish and functional piece of furniture that will add a touch of modern elegance to any bedroom. Made from engineered wood with a melamine finish, it is scratch and dust-resistant, ensuring durability. The tempered glass top and metal accents add a trendy look, while two USB ports provide convenient charging for electronic devices. The edge banding provides safety and durability. Telescopic ball-bearing runners are provided for ease of usage.",
-    sku: 8,
-    productPrice: 319,
-    weight: 18,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/167017403-167017403-HC03102024_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "730f54d3-b589-4934-a4ba-937dca69d0c8",
-    subCategoryName: "Lounges & Swings",
-    productId: "d0a00e7e-8fd7-4d3e-85fc-4c4a9a972582",
-    productName: "Degas Outdoor Chair",
-    addedDate: "2024-11-02T21:14:47.761885Z",
-    productColor: "Natural",
-    description:
-      "Relax and unwind in style with this chair. It has a soft fabric seating for a comfortable experience. The rattan material frame with a trendy back and sturdy legs provides a sturdy foundation. Further, this chair adds a touch of sophistication to your outdoor living space.",
-    sku: 8,
-    productPrice: 449,
-    weight: 20,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/165647456-165647456-HC02102023_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "2815fc3f-115a-427b-8d32-9a6de44b56b3",
-    subCategoryName: "Toys",
-    productId: "08e4a07f-792d-4e88-90fe-483305d7c153",
-    productName: "Celestine 3-Storeyed Doll House",
-    addedDate: "2024-11-02T20:47:39.15647Z",
-    productColor: "Multicolour",
-    description:
-      "Presenting a three-storeyed doll house for your little daughter which is inclusive of a master bedroom with an attached bathroom, a living room, a kitchen cum dining space, a balcony, and a pool area. Tiny models of furniture and other house furnishings have been placed in the house to render a make-believe situation.",
-    sku: 8,
-    productPrice: 524,
-    weight: 1,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/160976987-160976987-HC240419_00-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "dfe94886-0935-4aae-9662-cc14531728d0",
-    subCategoryName: "Coffee Table",
-    productId: "61246bbb-cea4-40e4-9150-17c20f1d3ec8",
-    productName: "Dice 2-Piece Travertine Top Coffee Table",
-    addedDate: "2024-11-02T21:03:11.671975Z",
-    productColor: "White",
-    description:
-      "This travertine-top coffee table set is perfect for making a statement in your living area. Featuring a round form and a sophisticated travertine finish, these tables are sure to turn heads. Use them as a central coffee table or place them in a corner with a large plant or vase to highlight their elegance. Their versatile design makes them a standout addition to any space.",
-    sku: 8,
-    productPrice: 636,
-    weight: 35,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/166924903-166924903-HC10092024_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "dfe94886-0935-4aae-9662-cc14531728d0",
-    subCategoryName: "Coffee Table",
-    productId: "7ac0d3d3-ce38-44c4-af12-47ecf62ff5fd",
-    productName: "Flynt TV Unit",
-    addedDate: "2024-11-02T21:07:07.47065Z",
-    productColor: "White/Natural",
-    description:
-      "This TV unit is a stylish and functional addition to your living room. This media unit boasts an urban loft style, perfect for creating a cosy and contemporary atmosphere. Crafted from high-quality engineered wood, it features a natural finish that exudes warmth and elegance. With ample storage space, including three doors and adjustable shelves, it keeps your entertainment essentials organized and within reach. The TV unit can accommodate TVs up to 55 inches, making it a versatile choice for your home entertainment setup.",
-    sku: 8,
-    productPrice: 674,
-    weight: 34,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/166742958-166742958-HC05072024_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "73c34d9b-d6fe-4fdb-b4b5-a2f7c6ac3488",
-    subCategoryName: "Night Stands",
-    productId: "7b3377f4-6890-4e2d-a3b0-edc36ea30065",
-    productName: "Ripple Nightstand",
-    addedDate: "2024-11-02T21:46:19.860822Z",
-    productColor: "Light Taupe/Muted Gold",
-    description:
-      "This nightstand gets its charm from the contrasting colour scheme and modern aesthetics. It is made of engineered wood and highlighted in a soothing tone. Flaunting a debossed patterning, the stand is supported by tapered legs for a visually pleasing appeal. It can be spot cleaned for upkeep.",
-    sku: 8,
-    productPrice: 699,
-    weight: 13,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/162660488-162660488-HC05102020_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "dfe94886-0935-4aae-9662-cc14531728d0",
-    subCategoryName: "Coffee Table",
-    productId: "aba7ce69-d8f4-48f8-af98-6943b9b9c8c5",
-    productName: "Eden TV Unit",
-    addedDate: "2024-11-02T21:10:05.900838Z",
-    productColor: "Walnut",
-    description:
-      "Presenting a sleek and stylish design, this unit will make a spectacular impression on your home. It can accomodate a television screen of up to sixty-five inches and is well-constructed from engineered wood. It is equipped with multiple storage sections for systematic organisation. This sturdy unit ensures longevity and is made in Malaysia. You can maintain it easily from time to time.",
-    sku: 8,
-    productPrice: 699,
-    weight: 38,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/165660335-165660335-HC06102023_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-  {
-    subCategoryId: "5ec0228e-e600-4408-b3d4-0803af564a11",
-    subCategoryName: "Kids Bed",
-    productId: "3b63eeba-223a-4253-94c5-5f659026eacf",
-    productName: "Ruby 3-in-1 Convertible Cot - 70x130cm ",
-    addedDate: "2024-11-02T20:29:56.073419Z",
-    productColor: "white",
-    description:
-      "An all-in-one nursery solution, this cot is designed to double up as a day bed, toddler bed and a full-sized bed. The crib has a three-position adjustable mattress support base that makes it a must-have for your growing baby. Crafted from engineered wood, this durable cot can be spot cleaned for upkeep.",
-    sku: 19,
-    productPrice: 824,
-    weight: 35,
-    averageRating: null,
-    productImage:
-      "https://media.homecentre.com/i/homecentre/165371584-164130047-HC19122021_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp-2x$",
-  },
-];
-console.log(list.length);
+import React, { useState, useEffect } from "react";
+import { Pagination } from "@mui/material";
+import FavoriteIcon2 from "@mui/icons-material/Favorite";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Link } from "react-router-dom";
+import "./Product.css";
+import image from "../../images/head title.jpeg";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+export default function Products({ productList }) {
+  const [sort, setSort] = React.useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(12);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+
+  const handleChange = (event) => {
+    setSort(event.target.value);
+  };
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const totalPages = Math.ceil(productList.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const filteredProducts = productList
+    .slice(indexOfFirstProduct, indexOfLastProduct)
+    .filter((product) => {
+      const productPrice = parseFloat(product.productPrice);
+      if (minPrice && maxPrice) {
+        return productPrice >= minPrice && productPrice <= maxPrice;
+      } else if (minPrice) {
+        return productPrice >= minPrice;
+      } else if (maxPrice) {
+        return productPrice <= maxPrice;
+      } else {
+        return;
+        product.productName.toLowerCase().includes(searchTerm.toLowerCase());
+      }
+    });
+
+  const currentProducts = sort
+    ? filteredProducts.sort((a, b) => {
+        if (sort === 1) {
+          return a.productName.localeCompare(b.productName); // Alphabetically A-Z
+        } else if (sort === 2) {
+          return b.productName.localeCompare(a.productName); // Alphabetically Z-A
+        } else if (sort === 3) {
+          return a.productPrice - b.productPrice; // Price low to high
+        } else if (sort === 4) {
+          return b.productPrice - a.productPrice; // Price high to low
+        } else {
+          return 0; // No sorting or default sorting
+        }
+      })
+    : filteredProducts;
+  return (
+    <div>
+      <div className="HeadTitle">
+        <img className="hh" src={image} alt="head title" />
+        <h1>ALL COLLECTIONS</h1>
+        <p className="hhp">HOME | ALL COLLECTIONS</p>
+      </div>
+      <div className="maincontent">
+        <div className="filter-section">
+          <h2>Filter:</h2> <br />
+          <div>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                Availabaility
+              </AccordionSummary>
+              <AccordionDetails>
+                <input type="checkbox" /> In Stock
+                <br />
+                <input type="checkbox" /> Out Of Stock
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2-content"
+                id="panel2-header"
+              >
+                Price
+              </AccordionSummary>
+              <AccordionDetails>
+                <p>The highest price to lowest price</p>${" "}
+                <input
+                  className="priceRange"
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                />
+                {" - "}
+                <input
+                  className="priceRange"
+                  type="number" // Restrict input to numbers
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                />
+                <button onClick={() => setMinPrice("") && setMaxPrice("")}>
+                  Clear Filter
+                </button>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+        </div>
+        <div className="product-grid">
+          <div className="two-sections">
+            <div className="product-grid-head">
+              <p>
+                Showing {indexOfFirstProduct + 1} - {indexOfLastProduct} of{" "}
+                {productList.length} Results
+              </p>
+              <div className="searchandsort">
+                <Box
+                  component="form"
+                  sx={{ "& > :not(style)": { m: 1, width: "170px" } }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="standard-basic"
+                    label="Search Products"
+                    variant="standard"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    slotProps={{
+                      input: {
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <SearchIcon />
+                          </InputAdornment>
+                        ),
+                      },
+                    }}
+                  />
+                </Box>
+                <Box sx={{ minWidth: 170 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label"></InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={sort}
+                      label="Sort"
+                      onChange={handleChange}
+                    >
+                      <MenuItem
+                        defaultValue={"Alphabetically, A - Z"}
+                        value={1}
+                      >
+                        Alphabetically, A-Z
+                      </MenuItem>
+                      <MenuItem value={2}>Alphabetically, Z-A</MenuItem>
+                      <MenuItem value={3}>Price, low to high</MenuItem>
+                      <MenuItem value={4}>Price, high to low</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </div>
+            </div>
+            <div className="mapProducts">
+              <div className="products2">
+                {currentProducts
+                  .filter((product) =>
+                    product.productName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  )
+                  .map((product) => (
+                    <div key={product.id} className="cards2">
+                      <Link to={`products/${product.productId}`}>
+                        <br /> <br />
+                        <img src={product.productImage} alt="cart" />
+                      </Link>
+                      <br />
+                      <div className="contairr2">
+                        <div className="priceTag2">
+                          <p>{product.productName}</p>
+                          <p>Price: {product.productPrice} SAR</p>
+                        </div>
+
+                        <button className="cartbutton2">
+                          ADD&nbsp;TO&nbsp;CART
+                        </button>
+                        <div className="subicon2">
+                          <div className="icon-circle2">
+                            <FavoriteIcon2 />
+                          </div>
+                          <div className="icon-circle2">
+                            <RemoveRedEyeIcon />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              {totalPages > 1 && ( // Conditionally render Pagination if needed
+                <div className="pagination-container2">
+                  <Pagination
+                    shape="rounded"
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handlePageChange} // Use handlePageChange for Material UI integration
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
