@@ -38,7 +38,6 @@ export default function HeroSection() {
       <img src={slides[currentSlide].image} alt="Slide" />
       <div className="text-container">
         <p>{slides[currentSlide].text}</p>
-        <button>{slides[currentSlide].buttonText}</button>
       </div>
     </section>
   );

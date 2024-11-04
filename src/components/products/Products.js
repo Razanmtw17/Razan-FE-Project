@@ -36,7 +36,7 @@ export default function Products({productList}) {
 
   const totalPages = Math.ceil(productList.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;   
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage; 
 
 
   const filteredProducts = productList.slice(indexOfFirstProduct, indexOfLastProduct).filter((product) => {
@@ -48,8 +48,7 @@ export default function Products({productList}) {
     } else if (maxPrice) {
       return productPrice <= maxPrice;
     } else {
-      return   
- product.productName.toLowerCase().includes(searchTerm.toLowerCase());
+      return product.productName.toLowerCase().includes(searchTerm.toLowerCase());
     }
   });
 
@@ -68,6 +67,7 @@ export default function Products({productList}) {
         }
       })
     : filteredProducts;
+  
   return (
     <div>
       <div className="HeadTitle">
@@ -116,12 +116,10 @@ export default function Products({productList}) {
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
-                
-                  <DeleteIcon
-                    onClick={() => setMinPrice("") && setMaxPrice("")}
-                    sx={{color: 'red'}}
-                  />
-                
+                <DeleteIcon
+                  onClick={() => setMinPrice("") && setMaxPrice("")}
+                  sx={{ color: "red" }}
+                />
               </AccordionDetails>
             </Accordion>
           </div>
@@ -190,11 +188,9 @@ export default function Products({productList}) {
                       .includes(searchTerm.toLowerCase())
                   )
                   .map((product) => (
-                    <div key={product.id} className="cards2">
-                      <Link to={`products/${product.productId}`}>
-                        <br /> <br />
-                        <img src={product.productImage} alt="cart" />
-                      </Link>
+                    <div key={product.productId} className="cards2">
+                      <br /> <br />
+                      <img src={product.productImage} alt="cart" />
                       <br />
                       <div className="contairr2">
                         <div className="priceTag2">
@@ -202,21 +198,27 @@ export default function Products({productList}) {
                           <p>Price: {product.productPrice} SAR</p>
                         </div>
 
-                        <button className="cartbutton2">
+                        <button
+                          className="cartbutton2"
+                        >
                           ADD&nbsp;TO&nbsp;CART
                         </button>
                         <div className="subicon2">
                           <div className="icon-circle2">
                             <FavoriteIcon2 />
                           </div>
+                          <Link to={`${product.productId}`}>
                           <div className="icon-circle2">
-                            <RemoveRedEyeIcon />
+                              <RemoveRedEyeIcon sx={{ color: "black" }} />
                           </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
                   ))}
               </div>
+              <br />
+              <br />
               {totalPages > 1 && ( // Conditionally render Pagination if needed
                 <div className="pagination-container2">
                   <Pagination
