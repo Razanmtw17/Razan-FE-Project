@@ -37,7 +37,7 @@ export default function ProductDetails() {
       }
       fetchData();
     }, [url]);
-    console.log(product);
+    console.log(productId);
   
     const handleIncrement = () => {
       setQuantity(quantity + 1);
@@ -52,7 +52,7 @@ export default function ProductDetails() {
     
   return (
     <div>
-      {/* <div className="pdmaincontent">
+      <div className="pdmaincontent">
         <img src={product.productImage} alt="" className="pdimage" />
         <div className="pddetails">
           <h1 className="pddetailsh1">{product.productName}</h1>
@@ -96,8 +96,8 @@ export default function ProductDetails() {
           </button>
         </div>
       </div>
-      <div className="pddescription"></div> */}
-      <h1>{product}</h1>
+      <div className="pddescription"></div>
+      <h1>fsg</h1>
     </div>
   );
 }
