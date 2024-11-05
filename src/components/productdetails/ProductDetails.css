@@ -1,5 +1,5 @@
 .pdmaincontent {
-    border: 1px solid black;
+   
     width: 90%;
     height: 500px;
     margin: 0 auto;
@@ -8,7 +8,7 @@
     margin-top: 45px;
 }
 .pdimage {
-    border: 1px solid black;
+   
     height: 100%;
     width: 50%;
 }
@@ -17,19 +17,21 @@
     cursor: pointer;z-index: 1;
 }
 .pddetails {
-    border: 1px solid black;
+    
     height: 100%;
     width: 50%;
     position: relative;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 .pddetailsh1 {
     margin-top: 10px;
     margin-left: 10px;
     padding-bottom: 0;
+    font-size: large;
 }
 .pdrating {
     padding-top: 1px;
-    margin-bottom: 0; /* Remove bottom margin */
+    margin-bottom: 0; 
     margin-left: 5px;
     position: absolute;
     top: 30px;
@@ -37,6 +39,7 @@
 .pdprice {
     margin-left: 10px;
     padding-bottom: 10px;
+    padding-top: 5px;
 }
 .pdhr {
     width: 90%;
@@ -73,7 +76,7 @@
     background-color:#43D7D7; 
     color: white;
     border: none;
-    padding: 20px 35px;
+    padding: 10px 30px;
     cursor: pointer;
     font-weight: 100;
     margin-top: 5px;
@@ -84,12 +87,62 @@
     background-color:#43D7D7; 
     color: white;
     border: none;
-    padding: 15px 20px;
+    padding: 6px 10px;
     margin-top: 8px;
 }
 .pddescription {
-    border: 1px solid black;
+   
     width: 90%;
-    height: 300px;
+    height: auto;
     margin: 0 auto;
+    padding-top: 20px;box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.pddesss {
+   
+    width: 600px;
+    
+}
+table {
+    width: 100%;
+}
+th {
+    text-align: left;
+}
+.relatedproducts {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+}
+.relatiedtitle {
+    text-align: center;
+}
+.relatiedtitle p {
+    color: #B17939;
+}
+.relatiedtitle h2 {
+    font-weight: 400;
+}
+.relatiedtitle  {
+    margin-top: 30px;
+    color: black;
+}
+.relatiedtitle p {
+    color: black;
+}
+.relatiedtitle  .subicon {
+     display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 190px; 
+    left: 80%;
+} 
+.relatiedtitle .cartbutton {
+    bottom: 80px; 
+}
+@media (max-width: 804px) {
+  
+  .addcartwisjquantity {
+    
+    flex-direction: column;
+    }
 }
