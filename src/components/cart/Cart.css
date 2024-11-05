@@ -1,0 +1,100 @@
+.cartcontent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 40px;
+    align-items: center;
+}
+.cartContentheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 40px;
+}
+.cartcontent {
+    border-bottom: 1px solid black;
+    width: 90%;
+    margin: auto;
+}
+.cartproductdetailsimage {
+    width: 160px;
+    height: 160px;
+}
+.cartproductdetails {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    border: 1px solid black;
+}
+.cartproductdetails p {
+    
+    width: 160px;
+    padding-left: 5px;
+}
+.cartproducttotal {
+    padding-right: 110px;
+}
+.cartquantity {
+    padding-right: 180px;
+}
+.empty-cart-message {
+   border: 1px solid black;
+   text-align: center;
+   padding-top: 100px;
+   padding-bottom: 100px;
+}
+.empty-cart-message h2 {
+    font-weight: 400;
+    font-size: 30px;
+    padding-bottom: 45PX;
+}
+ .pdcartbuttoncart {
+    background-color: #43D7D7;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; 
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.notestotall {
+   
+    width: 90%;
+    height: 200px;
+    margin: 0 auto;
+   display: flex;
+   flex-direction: row;
+}
+.notes {
+    width: 50%;
+    height: 100%;
+    padding-top:10px;
+}
+.writehere {
+    padding-top: 20px;
+}
+#outlined-multiline-static {
+    width: 240px;
+}
+
+.total {
+     width: 50%;
+    height: 100%;
+    padding-top: 10px;
+}
+.pdcartbuttoncartcount {
+    background-color: #43D7D7;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    cursor: pointer;
+    font-weight: 100;
+    display: flex;
+    margin-top: 20px;
+   
+}

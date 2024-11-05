@@ -1,35 +1,81 @@
-{relatedProducts.length > 0 ? (
-  <div className="products">
-    {relatedProducts.map((relatedProduct) => (
-      <div key={relatedProduct.id} className="cards">
-        {/* Link to product details if needed (replace with your routing logic) */}
-        <Link to={`products/${relatedProduct.id}`}>
-          <br /> <br />
-          <img
-            src={relatedProduct.productImage}
-            alt={relatedProduct.productName}
-          />
-        </Link>
-        <br />
-        <div className="contairr">
-          <div className="priceTag">
-            <p>{relatedProduct.productName}</p>
-            <p>Price: ${relatedProduct.productPrice} SAR</p>
-          </div>
-          <button className="cartbutton">ADD&nbsp;TO&CART</button>
-          <div className="subicon">
-            <div className="icon-circle">
-              {/* Assuming FavoriteBorderIcon2 is your wishlist icon */}
-            </div>
-            <div className="icon-circle">
-              <RemoveRedEyeIcon />{" "}
-              {/* Assuming RemoveRedEyeIcon is your view details icon */}
-            </div>
-          </div>
+return (
+  <div>
+    <div className="HeadTitle">
+      <img className="hh" src={image} alt="head title" />
+      <h1>CART</h1>
+    </div>
+    {cart.length === 0 ? (
+      <p className="empty-cart-message">Your cart is currently empty.</p>
+    ) : (
+      <div className="cartContentheader">
+        <div>
+          <h4>Product</h4>
+        </div>
+        <div>
+          <h4>Quantity</h4>
+        </div>
+        <div>
+          <h4>Total</h4>
         </div>
       </div>
-    ))}
+    )}
+    {cart.map((item) => {
+      return (
+        <div className="cartcontent" key={item.productId}>
+          <div className="cartproduct">
+            <div className="cartproductdetails">
+              <div>
+                <img
+                  className="cartproductdetailsimage"
+                  src={item.productImage}
+                  alt={item.productName}
+                />
+              </div>
+              <div>
+                <p>Description</p>
+                <p>{item.productName}</p>
+                <p>Color:</p>
+                <p>{item.productColor}</p>
+              </div>
+            </div>
+          </div>
+          <div className="cartquantity">
+            <IconButton
+              onClick={() =>
+                handleQuantityChange(item.productId, item.quantity - 1)
+              }
+              disabled={item.quantity <= 1}
+            >
+              <RemoveIcon />
+            </IconButton>
+            <TextField
+              className="pdquantity"
+              value={item.quantity}
+              onChange={(e) =>
+                handleQuantityChange(item.productId, parseInt(e.target.value))
+              }
+              inputProps={{
+                inputMode: "numeric",
+                pattern: "[0-9]*",
+                min: 1,
+              }}
+            />
+            <IconButton
+              onClick={() =>
+                handleQuantityChange(item.productId, item.quantity + 1)
+              }
+            >
+              <AddIcon />
+            </IconButton>
+            <IconButton onClick={() => handleRemoveProduct(item.productId)}>
+              <DeleteForeverIcon sx={{ color: "red" }} />
+            </IconButton>
+          </div>
+          <div className="cartproducttotal">
+            <p>{item.productPrice * item.quantity}</p>
+          </div>
+        </div>
+      );
+    })}
   </div>
-) : (
-  <p>No related products found.</p>
-);}
+);

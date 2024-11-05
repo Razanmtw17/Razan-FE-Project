@@ -5,7 +5,7 @@ import FavoriteIcon2 from '@mui/icons-material/Favorite';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { Link } from "react-router-dom";
 
-export default function HomeProduct({ productList, wishList, setWishList }) {
+export default function HomeProduct({ productList, cart, setCart }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(12);
   useEffect(() => {
@@ -44,50 +44,65 @@ export default function HomeProduct({ productList, wishList, setWishList }) {
 
 
   console.log('products:', productList);
-  function addToFav(product) {
-    const isAlreadyInWishlist = wishList.some(item => item.id === product.id);
-    if (!isAlreadyInWishlist) {
-      setWishList([...wishList, product]);
+  function addToCart(product) {
+    // Check if the product is already in the cart
+    const isAlreadyInCart = cart.some(
+      (item) => item.productId === product.productId
+    );
+
+    if (isAlreadyInCart) {
+      // If already in cart, update the quantity
+      setCart(
+        cart.map((item) =>
+          item.productId === product.productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // If not in cart, add it with an initial quantity of 1
+      setCart([...cart, { ...product, quantity: 1 }]);
     }
   }
 
   return (
     <div className="productcontainer">
-      <div className='Title'>
+      <div className="Title">
         <p>HOT SALES</p>
         <h2>Check The Hit Products</h2>
       </div>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
 
       <div className="products">
-          {currentProducts.map((product) => (
-            <div key={product.id} className="cards">
-              <Link to={`products/${product.productId}`}>
-                <br /> <br />
-                <img src={product.productImage} alt="cart" />
-              </Link>
-              <br /> 
-              <div className="contairr">
-                <div className="priceTag">
-                  <p>{product.productName}</p>
-                  <p>Price: {product.productPrice} SAR</p>
-                </div>
+        {currentProducts.map((product) => (
+          <div key={product.id} className="cards">
+            <Link to={`products/${product.productId}`}>
+              <br /> <br />
+              <img src={product.productImage} alt="cart" />
+            </Link>
+            <br />
+            <div className="contairr">
+              <div className="priceTag">
+                <p>{product.productName}</p>
+                <p>Price: {product.productPrice} SAR</p>
+              </div>
 
-                <button className="cartbutton">ADD&nbsp;TO&nbsp;CART</button>
-              <div className='subicon'>
-              <div className="icon-circle">
-                <FavoriteIcon2 />
-              </div>
-              <div className="icon-circle">
-                <RemoveRedEyeIcon />
-              </div>
+              <button onClick={() => addToCart(product)} className="cartbutton">
+                ADD&nbsp;TO&nbsp;CART
+              </button>
+              <div className="subicon">
+                <div className="icon-circle">
+                  <FavoriteIcon2 />
+                </div>
+                <div className="icon-circle">
+                  <RemoveRedEyeIcon />
+                </div>
               </div>
             </div>
           </div>
         ))}
-        
       </div>
       {totalPages > 1 && ( // Conditionally render Pagination if needed
         <div className="pagination-container">

@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import CartPage from './pages/CartPage';;
 function App() {
   const url="http://localhost:5125/";
   const productUrl = "http://localhost:5125/api/v1/products";
@@ -14,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [wishList, setWishList] = useState([]);
+  const [cart, setCart] = useState([]);
   function getData() {
     axios
       .get(productUrl)
@@ -54,8 +56,8 @@ function App() {
           element: (
             <HomePage
               productList={productList.slice(0, 8)}
-              wishList={wishList}
-              setWishList={setWishList}
+              cart={cart}
+              setCart={setCart}
             />
           ),
         },
@@ -64,14 +66,18 @@ function App() {
           element: (
             <ProductPage
               productList={productList}
-              wishList={wishList}
-              setWishList={setWishList}
+              cart={cart}
+              setCart={setCart}
             />
           ),
         },
         {
           path: "/products/:productId",
           element: <ProductDetailsPage />,
+        },
+        {
+          path: "/cart",
+          element: <CartPage cart={cart} setCart={setCart} />,
         },
       ],
     },

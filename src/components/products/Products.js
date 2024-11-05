@@ -18,7 +18,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import DeleteIcon from "@mui/icons-material/Delete";
-export default function Products({productList}) {
+export default function Products({ productList, cart, setCart }) {
   const [sort, setSort] = React.useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(12);
@@ -29,28 +29,50 @@ export default function Products({productList}) {
   const handleChange = (event) => {
     setSort(event.target.value);
   };
+  function addToCart(product) {
+    // Check if the product is already in the cart
+    const isAlreadyInCart = cart.some(
+      (item) => item.productId === product.productId
+    );
 
+    if (isAlreadyInCart) {
+      // If already in cart, update the quantity
+      setCart(
+        cart.map((item) =>
+          item.productId === product.productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // If not in cart, add it with an initial quantity of 1
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  }
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
   };
 
   const totalPages = Math.ceil(productList.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage; 
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
-
-  const filteredProducts = productList.slice(indexOfFirstProduct, indexOfLastProduct).filter((product) => {
-    const productPrice = parseFloat(product.productPrice);
-    if (minPrice && maxPrice) {
-      return productPrice >= minPrice && productPrice <= maxPrice;
-    } else if (minPrice) {
-      return productPrice >= minPrice;
-    } else if (maxPrice) {
-      return productPrice <= maxPrice;
-    } else {
-      return product.productName.toLowerCase().includes(searchTerm.toLowerCase());
-    }
-  });
+  const filteredProducts = productList
+    .slice(indexOfFirstProduct, indexOfLastProduct)
+    .filter((product) => {
+      const productPrice = parseFloat(product.productPrice);
+      if (minPrice && maxPrice) {
+        return productPrice >= minPrice && productPrice <= maxPrice;
+      } else if (minPrice) {
+        return productPrice >= minPrice;
+      } else if (maxPrice) {
+        return productPrice <= maxPrice;
+      } else {
+        return product.productName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      }
+    });
 
   const currentProducts = sort
     ? filteredProducts.sort((a, b) => {
@@ -67,7 +89,7 @@ export default function Products({productList}) {
         }
       })
     : filteredProducts;
-  
+
   return (
     <div>
       <div className="HeadTitle">
@@ -200,6 +222,7 @@ export default function Products({productList}) {
 
                         <button
                           className="cartbutton2"
+                          onClick={() => addToCart(product)}
                         >
                           ADD&nbsp;TO&nbsp;CART
                         </button>
@@ -208,9 +231,9 @@ export default function Products({productList}) {
                             <FavoriteIcon2 />
                           </div>
                           <Link to={`${product.productId}`}>
-                          <div className="icon-circle2">
+                            <div className="icon-circle2">
                               <RemoveRedEyeIcon sx={{ color: "black" }} />
-                          </div>
+                            </div>
                           </Link>
                         </div>
                       </div>
