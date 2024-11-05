@@ -16,6 +16,8 @@ function App() {
   const [error, setError] = useState(null);
   const [wishList, setWishList] = useState([]);
   const [cart, setCart] = useState([]);
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+
   function getData() {
     axios
       .get(productUrl)
@@ -46,10 +48,11 @@ function App() {
     getData()
     
   }, []);
+   
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayOut />,
+      element: <LayOut cartItemsCount={cartItemsCount} />,
       children: [
         {
           path: "/",

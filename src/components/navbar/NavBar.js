@@ -8,14 +8,10 @@ import Badge from '@mui/material/Badge';
 import { Link } from "react-router-dom";
 
 
-export default function NavBar() {
+export default function NavBar({ cartItemsCount }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('home'); // Set initial active link
-  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
-
-  const handleCartClick = () => {
-    setIsCartDrawerOpen(!isCartDrawerOpen);
-  };
+  const [activeLink, setActiveLink] = useState("home"); // Set initial active link
+ 
 
   const handleToggleClick = () => {
     setIsOpen(!isOpen);
@@ -79,15 +75,8 @@ export default function NavBar() {
         <div className={`actions nav-links ${isOpen ? "show" : ""}`}>
           <ul>
             <li>
-              <a href="/favorites">
-                <Badge badgeContent={6} color="primary">
-                  <FavoriteBorderOutlinedIcon sx={{ color: "black" }} />
-                </Badge>
-              </a>
-            </li>
-            <li>
               <Link to="/cart">
-                <Badge badgeContent={2} color="primary">
+                <Badge badgeContent={cartItemsCount} color="primary">
                   <LocalMallOutlinedIcon sx={{ color: "black" }} />
                 </Badge>
               </Link>

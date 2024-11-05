@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import image from "../../images/head title.jpeg";
 import './Cart.css';
 import TextField from "@mui/material/TextField";
@@ -8,8 +8,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-
+import LayOut from '../layout/LayOut';
 export default function Cart({ cart, setCart }) {
+    const [cartItemsCount, setCartItemsCount] = useState(0);
     const [quantity, setQuantity] = React.useState(1);
     const [value, setValue] = React.useState("1");
     if (!cart) {
@@ -29,6 +30,11 @@ export default function Cart({ cart, setCart }) {
   const handleRemoveProduct = (productId) => {
     setCart(cart.filter((item) => item.productId !== productId));
   };
+const handleAddToCart = (product) => {
+  // ... add product to cart logic
+  setCart([...cart, product]);
+  setCartItemsCount(cartItemsCount + 1);
+};
   return (
     <div>
       <div className="HeadTitle">
@@ -153,6 +159,7 @@ export default function Cart({ cart, setCart }) {
           </div>
         </div>
       )}
+     
     </div>
   );
 
