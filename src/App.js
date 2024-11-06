@@ -6,7 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ProductDetailsPage from './pages/ProductDetailsPage';
-import CartPage from './pages/CartPage';;
+import CartPage from './pages/CartPage';
+import UserPage from "./pages/UserPage";
+import UserRegister from './components/user/UserRegister';
+import UserLogin from './components/user/UserLogin';
 function App() {
   const url="http://localhost:5125/";
   const productUrl = "http://localhost:5125/api/v1/products";
@@ -81,6 +84,14 @@ function App() {
         {
           path: "/cart",
           element: <CartPage cart={cart} setCart={setCart} />,
+        },
+        {
+          path: "/register",
+          element: <UserRegister />,
+        },
+        {
+          path: "/login",
+          element: <UserLogin />,
         },
       ],
     },

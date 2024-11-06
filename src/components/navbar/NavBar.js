@@ -5,6 +5,7 @@ import toggle from '../../images/toggle.png';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import Badge from '@mui/material/Badge';
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link } from "react-router-dom";
 
 
@@ -80,6 +81,13 @@ export default function NavBar({ cartItemsCount }) {
                   <LocalMallOutlinedIcon sx={{ color: "black" }} />
                 </Badge>
               </Link>
+            </li>
+            <li>
+              <a href="/register">
+                <Badge>
+                  <PersonOutlineIcon sx={{ color: "black" }} />
+                </Badge>
+              </a>
             </li>
           </ul>
         </div>
