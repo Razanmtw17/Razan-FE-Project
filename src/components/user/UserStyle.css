@@ -63,3 +63,30 @@
 .forgotandsing p:hover {
     color: #B17939;
 }
+.revelpass {
+  
+  display: flex;
+  align-items: center;
+  width: 73%; /* Adjust width as needed */
+  
+  border-radius: 4px;
+  padding: 5px 10px;
+
+}
+.revelpass input {
+  flex: 1; /* Allow the input to fill most of the space */
+  border: none; /* Remove default border */
+  outline: none; /* Remove default outline */
+  font-size: 16px;
+  padding: 1px;
+  border: 1px solid #ccc;
+}
+.revelpass .Icon {
+  cursor: pointer; /* Indicate clickable behavior */
+  color: #999; /* Adjust color as desired */
+  transition: color 0.2s ease-in-out; /* Add a smooth transition on hover */
+}
+
+.revelpass .Icon:hover {
+  color: #333; /* Change icon color on hover */
+}

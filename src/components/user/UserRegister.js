@@ -2,12 +2,28 @@ import React, {useState} from 'react'
 import './UserStyle.css';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 export default function UserRegister() {
     const [userInfo , setUserInfo] = useState({username: "" , firstname: "" , lastname:"", birthdate:"",email:"",password:"", phonenumber:0});
   //url: http://localhost:5125/api/v1/users/register
  const [selectedDate, setSelectedDate] = useState(null);
 const [email, setEmail] = useState("");
 const [emailError, setEmailError] = useState("");
+const [password, setPassword] = useState("");
+const [type, setType] = useState("password");
+const [icon, setIcon] = useState(eyeOff);
+const handleToggle = () => {
+  if (type === "password") {
+    setIcon(eye);
+    setType("text");
+  } else {
+    setIcon(eyeOff);
+    setType("password");
+  }
+};
  const handleDateChange = (event) => {
    setSelectedDate(event.target.value);
  };
@@ -43,26 +59,28 @@ function onChangeHandlerPhoneNumber(event) {
   function onChangeHandlerPassword(event) {
     setUserInfo({ ...userInfo, password: event.target.value });
   }
+  const navigate = useNavigate();
   function registNewUser(){
     const userUrl = "http://localhost:5125/api/v1/Users/register";
     axios.post(userUrl , userInfo)
-    .then((res) => console.log(res , "res from post"))
+    .then((res) => {
+        if(res.status === 200){
+            alert("User Seccessfully created an account");
+            navigate("/login");
+        }
+    })
     .catch((err) => {
         console.log(err , "err from post");
         if(err.status === 400){
-            if (err.response.data.errors.password) {
-              alert(err.response.data.errors.password[0]);
-              return;
-            }
-            if (err.response.data.errors.Email) {
-              alert(err.response.data.errors.Email[0]);
+            if (err.response.data.message) {
+              alert(err.response.data.message);
               return;
             }
         }
 
     });
   }
-  
+ 
   return (
     <div>
       <div className="signupdiv">
@@ -91,22 +109,34 @@ function onChangeHandlerPhoneNumber(event) {
               required
             />
             <label for="email">Email :</label>
-            <input
-              type="text"
-              
-              required
-              onChange={onChangeHandlerEmail}
-            />
+            <input type="text" required onChange={onChangeHandlerEmail} />
             {emailError && <p style={{ color: "red" }}>{emailError}</p>}
             <label for="password">Password:</label>
+
+            <div className="revelpass">
+              <input
+                type={type}
+                placeholder="Password"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  onChangeHandlerPassword(event); // Pass the event object to the function
+                }}
+                autoComplete="current-password"
+              />
+              <span
+                class="flex justify-around items-center"
+                onClick={handleToggle}
+              >
+                <Icon class="absolute mr-10" icon={icon} size={25} />
+              </span>
+            </div>
             <input
-              type="password"
-              required
-              onChange={onChangeHandlerPassword}
+              type="button"
+              value="CREATE"
+              className="createbutton"
+              onClick={registNewUser}
             />
-            <button className="createbutton" onClick={registNewUser}>
-              CREATE
-            </button>
           </form>
         </div>
       </div>
