@@ -83,7 +83,7 @@ export default function NavBar({ cartItemsCount }) {
               </Link>
             </li>
             <li>
-              <a href="/register">
+              <a href="/login">
                 <Badge>
                   <PersonOutlineIcon sx={{ color: "black" }} />
                 </Badge>

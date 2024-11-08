@@ -10,6 +10,8 @@ import CartPage from './pages/CartPage';
 import UserPage from "./pages/UserPage";
 import UserRegister from './components/user/UserRegister';
 import UserLogin from './components/user/UserLogin';
+import UserProfile from "./components/user/UserProfile";
+import ProtectedRout from "./components/user/ProtectedRout";
 function App() {
   const url="http://localhost:5125/";
   const productUrl = "http://localhost:5125/api/v1/products";
@@ -17,9 +19,8 @@ function App() {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [wishList, setWishList] = useState([]);
   const [cart, setCart] = useState([]);
-    const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
 
   function getData() {
     axios
@@ -52,6 +53,29 @@ function App() {
     
   }, []);
    
+
+  //user 
+  const [userDate , setUserDate] = useState(null);
+  const [isUserDataLoading , setIsUserDataLoading] = useState(true);
+  function getUserDate(){
+    const token = localStorage.getItem("token");
+    axios.get("http://localhost:5125/api/v1/Users/auth", {
+      headers : {
+        Authorization: `Bearer ${token}`,
+      }
+    }).then((res) => {
+      setUserDate(res.data);
+      setIsUserDataLoading(false);
+    }).catch((err) => {
+      setIsUserDataLoading(false);
+      console.log(err);
+    });
+  }
+  useEffect(() => {
+    getUserDate();
+  }, []);
+  let isAuthenticated = userDate ? true : false ;
+  console.log(userDate,"from app");
   const router = createBrowserRouter([
     {
       path: "/",
@@ -91,7 +115,17 @@ function App() {
         },
         {
           path: "/login",
-          element: <UserLogin />,
+          element: <UserLogin getUserData={getUserDate} />,
+        },
+        {
+          path: "/profile",
+          element: (
+            <ProtectedRout
+              isUserDataLoading={isUserDataLoading}
+              isAuthenticated={isAuthenticated}
+              element={<UserProfile userDate={userDate} />}
+            />
+          ),
         },
       ],
     },

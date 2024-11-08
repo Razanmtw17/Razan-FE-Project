@@ -90,3 +90,105 @@
 .revelpass .Icon:hover {
   color: #333; /* Change icon color on hover */
 }
+.userprofilecontainer {
+  border: 1px solid black;
+  width: 60%;
+  height: 400px;
+  margin: 0 auto;
+}
+.userprofileinfo {
+  border: 1px solid black;
+  width: 90%;
+  height: 300px;
+  margin: 0 auto;
+  display: flex;
+}
+.left-side {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+ 
+}
+.right-side {
+  padding-left: 5%;
+  display: flex;
+  flex-direction: row;width: 100%;
+}
+.option {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid gainsboro;
+  height: 40px;
+  text-align: left;
+  padding-left: 15px;
+}
+.option.active {
+  /* Styles for the active button */
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+.userprofileinfo .right-side input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.userprofileinfo .right-side input:focus {
+  border-color: #B17939;
+  outline: none;
+}
+.btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.btn-primary {
+  background-color: #43D7D7;
+  color: #fff;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 10px;
+}
+
+.btn-secondary {
+  background-color: 
+ #ccc;
+  color: #333;
+}
+.btn-primary:hover {
+  background-color: #B17939;
+}
+.option1div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.input-container input {
+  flex: 2;
+ 
+  width: 80%;
+}
+.input-container {
+ 
+  width: 100%;
+}
+.hhhhh {
+  width: 60%;
+}
+.button-container {
+  padding-top:20%;
+  width: 60%;
+  
+}
+.option2divv {
+  border: 1px solid black;
+  width: 100%;
+}
+.dot {
+  color: white;
+}
