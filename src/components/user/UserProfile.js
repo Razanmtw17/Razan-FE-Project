@@ -6,6 +6,7 @@ import Alert from "@mui/material/Alert";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { CloudDone } from "@mui/icons-material";
 
 const validateField = (name, value, userInfo, setUserInfo, setError) => {
   let errorMessage = ""; // Initialize error message
@@ -174,6 +175,87 @@ const handleDeleteClick = async () => {
 
    setOpen(false);
  };
+const [isEditingPassword, setIsEditingPassword] = useState(false);
+ const [oldPassword, setOldPassword] = useState("");
+ const [newPassword, setNewPassword] = useState("");
+ const [confirmPassword, setConfirmPassword] = useState("");
+ const [passwordError, setPasswordError] = useState("");
+ console.log("from profiel",userDate);
+const handleUpdatePassword = async () => {
+  // Validate old password
+
+  if (oldPassword !== userDate.password) {
+    setPasswordError("Incorrect old password");
+
+    console.log("not match pass");
+
+    return;
+  } // Validate new password (consider minimum length and complexity)
+
+  if (
+    !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z])([^\s]){8,}$/.test(
+      newPassword
+    )
+  ) {
+    setPasswordError(
+      "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
+    );
+
+    console.log(
+      "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
+    );
+
+    return;
+  } // Validate new password matches confirm password
+
+  if (newPassword !== confirmPassword) {
+    setPasswordError("Passwords do not match");
+
+    return;
+  }
+
+  try {
+    // Send API request to update password
+
+    const response = await axios.put(
+      `http://localhost:5125/api/v1/Users/${userDate.userId}`,
+      {
+        newPassword,
+      }
+    ); // Password updated successfully, handle success
+
+    setPasswordError("");
+
+    setOldPassword("");
+
+    setNewPassword("");
+
+    setConfirmPassword("");
+
+    setIsEditingPassword(false); // Show success message
+
+    setOpen(true);
+  } catch (error) {
+    // Handle API errors more specifically (e.g., network error, server error)
+
+    console.error("Error updating password:", error);
+
+    setPasswordError("An error occurred while updating password");
+  }
+};
+const handlePasswordChange = (e) => {
+  switch (e.target.name) {
+    case "oldpassword":
+      setOldPassword(e.target.value);
+      break;
+    case "newpassword":
+      setNewPassword(e.target.value);
+      break;
+    case "confirmpassword":
+      setConfirmPassword(e.target.value);
+      break;
+  }
+};
   return (
     <div>
       <div className="userprofilecontainer">
@@ -359,8 +441,72 @@ const handleDeleteClick = async () => {
                 </div>
               </div>
             ) : (
-              <div className="option2divv"> Content for Option 2</div>
-            )}{" "}
+              <div className="option1div">
+                <div className="input-container">
+                  <label>Old Password : </label>
+                  <br />
+                  <input
+                    type="password"
+                    name="oldpassword"
+                    disabled={!isEditing}
+                    placeholder="old password"
+                    onChange={handlePasswordChange}
+                  />
+                  <br />
+                  <label>New Password: </label>
+                  <br />
+                  <input
+                    type="password"
+                    name="newpassword"
+                    disabled={!isEditing}
+                    placeholder="new password"
+                    onChange={handlePasswordChange}
+                  />
+
+                  <br />
+                  <label>Confirm Password: </label>
+                  <br />
+                  <input
+                    type="password"
+                    name="confirmpassword"
+                    disabled={!isEditing}
+                    onChange={handlePasswordChange}
+                    placeholder="Confirm password"
+                  />
+                </div>
+
+                <div className="button-container">
+                  {!isEditing && (
+                    <div className="button-container">
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleEditClick}
+                      >
+                        Update Password
+                      </button>
+                    </div>
+                  )}
+
+                  {isEditing && (
+                    <>
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleUpdatePassword}
+                      >
+                        Save Changes
+                      </button>
+
+                      <button
+                        className="btn btn-secondary"
+                        onClick={handleDiscard}
+                      >
+                        Discard Changes
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
