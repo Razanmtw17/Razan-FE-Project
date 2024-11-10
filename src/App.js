@@ -12,6 +12,7 @@ import UserRegister from './components/user/UserRegister';
 import UserLogin from './components/user/UserLogin';
 import UserProfile from "./components/user/UserProfile";
 import ProtectedRout from "./components/user/ProtectedRout";
+import DashBord from "./components/dashboard/DashBord";
 function App() {
   const url="http://localhost:5125/";
   const productUrl = "http://localhost:5125/api/v1/products";
@@ -75,11 +76,19 @@ function App() {
     getUserDate();
   }, []);
   let isAuthenticated = userDate ? true : false ;
+  let shouldCheckAdmin = true;
   console.log(userDate,"from app");
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayOut cartItemsCount={cartItemsCount} />,
+      element: (
+        <LayOut
+          cartItemsCount={cartItemsCount}
+          isAuthenticated={isAuthenticated}
+          shouldCheckAdmin={shouldCheckAdmin}
+          userDate={userDate}
+        />
+      ),
       children: [
         {
           path: "/",
@@ -123,7 +132,21 @@ function App() {
             <ProtectedRout
               isUserDataLoading={isUserDataLoading}
               isAuthenticated={isAuthenticated}
-              element={<UserProfile userDate={userDate} />}
+              element={
+                <UserProfile userDate={userDate} setUserDate={setUserDate} />
+              }
+            />
+          ),
+        },
+        {
+          path: "/dashboard",
+          element: (
+            <ProtectedRout
+              isUserDataLoading={isUserDataLoading}
+              isAuthenticated={isAuthenticated}
+              shouldCheckAdmin={shouldCheckAdmin}
+              userDate={userDate}
+              element={<DashBord productList={productList} />}
             />
           ),
         },

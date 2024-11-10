@@ -87,7 +87,7 @@ function validateBirthDate(date) {
 
   return null; // Valid date
 }
-export default function UserProfile({ userDate }) {
+export default function UserProfile({ userDate, setUserDate }) {
   const [selectedOption, setSelectedOption] = useState("option1");
 
   const [isEditing, setIsEditing] = useState(false);
@@ -100,16 +100,16 @@ export default function UserProfile({ userDate }) {
     setSelectedOption(option);
   };
   const [birthDateError, setBirthDateError] = useState(null);
-const handleChangeBirthDate = (date) => {
-  const error = validateBirthDate(date);
+  const handleChangeBirthDate = (date) => {
+    const error = validateBirthDate(date);
 
-  if (error) {
-    setBirthDateError(error);
-  } else {
-    setUpdatedUserData({ ...updatedUserData, birthDate: date });
-    setBirthDateError(null);
-  }
-};
+    if (error) {
+      setBirthDateError(error);
+    } else {
+      setUpdatedUserData({ ...updatedUserData, birthDate: date });
+      setBirthDateError(null);
+    }
+  };
   const handleChange = (e) => {
     validateField(
       e.target.name,
@@ -127,34 +127,35 @@ const handleChangeBirthDate = (date) => {
     }
   };
 
-const handleSave = async () => {
-  try {
-    const response = await axios.put(
-      `http://localhost:5125/api/v1/Users/${userDate.userId}`,
-      updatedUserData
-    );
-    const updatedUser = response.data;
-    setUpdatedUserData(updatedUser); // Update the state with the updated user data
-    setIsEditing(false); // Close the editing mode
-    setOpen(true); // Show success Snackbar
-  } catch (error) {
-    
-    setOpen(true);
-    // Handle errors (optional: show an error message)
-  }
-};
-const navigate = useNavigate(); // Initialize useNavigate
+  const handleSave = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5125/api/v1/Users/${userDate.userId}`,
+        updatedUserData
+      );
+      const updatedUser = response.data;
+      setUpdatedUserData(updatedUser); // Update the state with the updated user data
+      setIsEditing(false); // Close the editing mode
+      setOpen(true); // Show success Snackbar
+    } catch (error) {
+      setOpen(true);
+      // Handle errors (optional: show an error message)
+    }
+  };
+  const navigate = useNavigate(); // Initialize useNavigate
 
-const handleDeleteClick = async () => {
-  try {
-    await axios.delete(`http://localhost:5125/api/v1/Users/${userDate.userId}`);
-    console.log("User deleted successfully");
-    navigate("/"); // Redirect to homepage
-  } catch (error) {
-    console.error("Error deleting user:", error);
-    // Handle error, e.g., show an error message
-  }
-};
+  const handleDeleteClick = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:5125/api/v1/Users/${userDate.userId}`
+      );
+      console.log("User deleted successfully");
+      navigate("/"); // Redirect to homepage
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      // Handle error, e.g., show an error message
+    }
+  };
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -164,98 +165,102 @@ const handleDeleteClick = async () => {
 
     setIsEditing(false); // Set editing mode to false after discarding
   };
- const [open, setOpen] = useState(false);
- const handleClick = () => {
-   setOpen(true);
- };
- const handleClose = (event, reason) => {
-   if (reason === "clickaway") {
-     return;
-   }
-
-   setOpen(false);
- };
-const [isEditingPassword, setIsEditingPassword] = useState(false);
- const [oldPassword, setOldPassword] = useState("");
- const [newPassword, setNewPassword] = useState("");
- const [confirmPassword, setConfirmPassword] = useState("");
- const [passwordError, setPasswordError] = useState("");
- console.log("from profiel",userDate);
-const handleUpdatePassword = async () => {
-  // Validate old password
-
-  if (oldPassword !== userDate.password) {
-    setPasswordError("Incorrect old password");
-
-    console.log("not match pass");
-
-    return;
-  } // Validate new password (consider minimum length and complexity)
-
-  if (
-    !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z])([^\s]){8,}$/.test(
-      newPassword
-    )
-  ) {
-    setPasswordError(
-      "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
-    );
-
-    console.log(
-      "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
-    );
-
-    return;
-  } // Validate new password matches confirm password
-
-  if (newPassword !== confirmPassword) {
-    setPasswordError("Passwords do not match");
-
-    return;
-  }
-
-  try {
-    // Send API request to update password
-
-    const response = await axios.put(
-      `http://localhost:5125/api/v1/Users/${userDate.userId}`,
-      {
-        newPassword,
-      }
-    ); // Password updated successfully, handle success
-
-    setPasswordError("");
-
-    setOldPassword("");
-
-    setNewPassword("");
-
-    setConfirmPassword("");
-
-    setIsEditingPassword(false); // Show success message
-
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
     setOpen(true);
-  } catch (error) {
-    // Handle API errors more specifically (e.g., network error, server error)
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
-    console.error("Error updating password:", error);
+    setOpen(false);
+  };
+  const [isEditingPassword, setIsEditingPassword] = useState(false);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  console.log("from profiel", userDate);
+  const handleUpdatePassword = async () => {
+    // Validate old password
 
-    setPasswordError("An error occurred while updating password");
+    if (oldPassword !== userDate.password) {
+      setPasswordError("Incorrect old password");
+
+      console.log("not match pass");
+
+      return;
+    } // Validate new password (consider minimum length and complexity)
+
+    if (
+      !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\da-zA-Z])([^\s]){8,}$/.test(
+        newPassword
+      )
+    ) {
+      setPasswordError(
+        "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
+      );
+
+      console.log(
+        "Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters"
+      );
+
+      return;
+    } // Validate new password matches confirm password
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+
+      return;
+    }
+
+    try {
+      // Send API request to update password
+
+      const response = await axios.put(
+        `http://localhost:5125/api/v1/Users/${userDate.userId}`,
+        {
+          newPassword,
+        }
+      ); // Password updated successfully, handle success
+
+      setPasswordError("");
+
+      setOldPassword("");
+
+      setNewPassword("");
+
+      setConfirmPassword("");
+
+      setIsEditingPassword(false); // Show success message
+
+      setOpen(true);
+    } catch (error) {
+      // Handle API errors more specifically (e.g., network error, server error)
+
+      console.error("Error updating password:", error);
+
+      setPasswordError("An error occurred while updating password");
+    }
+  };
+  const handlePasswordChange = (e) => {
+    switch (e.target.name) {
+      case "oldpassword":
+        setOldPassword(e.target.value);
+        break;
+      case "newpassword":
+        setNewPassword(e.target.value);
+        break;
+      case "confirmpassword":
+        setConfirmPassword(e.target.value);
+        break;
+    }
+  };
+  function logouthandler() {
+    localStorage.removeItem("token");
+    setUserDate(null);
   }
-};
-const handlePasswordChange = (e) => {
-  switch (e.target.name) {
-    case "oldpassword":
-      setOldPassword(e.target.value);
-      break;
-    case "newpassword":
-      setNewPassword(e.target.value);
-      break;
-    case "confirmpassword":
-      setConfirmPassword(e.target.value);
-      break;
-  }
-};
   return (
     <div>
       <div className="userprofilecontainer">
@@ -420,6 +425,13 @@ const handlePasswordChange = (e) => {
                         onClick={handleDeleteClick}
                       >
                         Delete
+                      </button>
+                      <br/>
+                      <button
+                        className="btn btn-primary"
+                        onClick={logouthandler}
+                      >
+                        Log Out
                       </button>
                     </div>
                   )}

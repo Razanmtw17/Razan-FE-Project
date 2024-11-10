@@ -9,10 +9,14 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Link } from "react-router-dom";
 
 
-export default function NavBar({ cartItemsCount }) {
+export default function NavBar({
+  cartItemsCount,
+  isAuthenticated,
+  shouldCheckAdmin,
+  userDate,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home"); // Set initial active link
- 
 
   const handleToggleClick = () => {
     setIsOpen(!isOpen);
@@ -82,13 +86,25 @@ export default function NavBar({ cartItemsCount }) {
                 </Badge>
               </Link>
             </li>
-            <li>
-              <a href="/login">
+
+            {isAuthenticated ? (
+              <Link to="/profile">
                 <Badge>
                   <PersonOutlineIcon sx={{ color: "black" }} />
                 </Badge>
-              </a>
-            </li>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Badge>
+                  <PersonOutlineIcon sx={{ color: "black" }} />
+                </Badge>
+              </Link>
+            )}
+            {isAuthenticated && userDate.role === "Admin" ? (
+              <Link to="/dashboard">Dashboard</Link>
+            ) : (
+              <p></p>
+            )}
           </ul>
         </div>
       </nav>

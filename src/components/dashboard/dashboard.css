@@ -1,0 +1,18 @@
+.producttable {
+   
+    
+}
+.productadminimg {
+    width: 30px;
+    height: 30px;
+}
+.theadproduct {
+    font-size: 10px;
+}
+.tbodyproducts {
+    font-size: 15px;
+}
+.trproduct {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
