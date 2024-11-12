@@ -35,31 +35,38 @@ export default function ProductDetails({ cart, setCart }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  function addToCart(product) {
-    // Check if the product is already in the cart
-    const isAlreadyInCart = cart.some(
-      (item) => item.productId === product.productId
-    );
+   function addToCart(product) {
+     console.log("Before cart update:", cart);
+     if (!cart) {
+       console.error("Cart state is undefined");
+       return;
+     }
 
-    if (isAlreadyInCart) {
-      // If already in cart, update the quantity
-      setCart(
-        cart.map((item) =>
-          item.productId === product.productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      // If not in cart, add it with an initial quantity of 1
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  }
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    const totalProducts = localStorage.getItem("totalProducts");
-    setCartItemsCount(parseInt(totalProducts) || 0);
-  }, []);
+     const isAlreadyInCart = cart.some(
+       (item) => item.productId === product.productId
+     );
+
+     if (isAlreadyInCart) {
+       // If already in cart, update the quantity
+       setCart(
+         cart.map((item) =>
+           item.productId === product.productId
+             ? { ...item, quantity: item.quantity + 1 }
+             : item
+         )
+       );
+     } else {
+       // If not in cart, add it with an initial quantity of 1
+        console.log("Before cart update:", cart);
+       setCart([...cart, { ...product, quantity: 1 }]);
+     }
+   }
+   const [cartItemsCount, setCartItemsCount] = useState(0);
+   useEffect(() => {
+     const totalProducts = localStorage.getItem("totalProducts");
+     setCartItemsCount(parseInt(totalProducts) || 0);
+   }, []);
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -139,7 +146,7 @@ export default function ProductDetails({ cart, setCart }) {
             <IconButton onClick={handleIncrement}>
               <AddIcon />
             </IconButton>
-            <button nClick={() => addToCart(product)} className="pdcartbutton">
+            <button onClick={() => addToCart(product)} className="pdcartbutton">
               ADD&nbsp;TO&nbsp;CART
             </button>
             <button className="pdwishlist">
@@ -209,9 +216,9 @@ export default function ProductDetails({ cart, setCart }) {
             {relatedProducts.length > 0 ? (
               <div className="products">
                 {firstThreeProducts.map((relatedProduct) => (
-                  <div key={relatedProduct.id} className="cards">
+                  <div key={relatedProduct.productId} className="cards">
                     {/* Link to product details if needed (replace with your routing logic) */}
-                    <Link to={`products/${relatedProduct.id}`}>
+                    <Link to={`/products/${relatedProduct.productId}`}>
                       <br /> <br />
                       <img
                         src={relatedProduct.productImage}
@@ -220,11 +227,16 @@ export default function ProductDetails({ cart, setCart }) {
                     </Link>
                     <br />
                     <div className="contairr">
-                      <div className="priceTag">
+                      <div className="priceTag" key={relatedProduct.productId}>
                         <p>{relatedProduct.productName}</p>
                         <p>Price: ${relatedProduct.productPrice} SAR</p>
                       </div>
-                      <button className="cartbutton">ADD&nbsp;TO&CART</button>
+                      <button
+                        onClick={() => addToCart(relatedProduct)}
+                        className="cartbutton"
+                      >
+                        ADD&nbsp;TO CART
+                      </button>
                       <div className="subicon">
                         <div className="icon-circle">
                           <FavoriteIcon2 />
