@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Offer.css';
-import image from '../../images/offer image.jpg'
+import image from '../../images/offer image.png'
 import { ScreenLockLandscapeRounded } from '@mui/icons-material';
 export default function Offer() {
     const [countdown, setCountdown] = useState(null);

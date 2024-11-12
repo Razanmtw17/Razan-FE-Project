@@ -5,7 +5,8 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProductDashboard from './ProductDashboard';
-export default function ({productList}) {
+import UserDahBoard from './UserDahBoard';
+export default function DashBord({productList}) {
     const [value, setValue] = React.useState("1");
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -29,7 +30,7 @@ export default function ({productList}) {
               <ProductDashboard productList={productList} />
             </TabPanel>
             <TabPanel value="2">
-              <p>dlkfhkjsd</p>
+              <UserDahBoard />
             </TabPanel>
             <TabPanel value="3">
               <p></p>

@@ -8,11 +8,14 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import CartPage from './pages/CartPage';
 import UserPage from "./pages/UserPage";
+import Box from "@mui/material/Box";
 import UserRegister from './components/user/UserRegister';
 import UserLogin from './components/user/UserLogin';
 import UserProfile from "./components/user/UserProfile";
 import ProtectedRout from "./components/user/ProtectedRout";
 import DashBord from "./components/dashboard/DashBord";
+import CircularProgress from "@mui/material/CircularProgress";
+import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   const url="http://localhost:5125/";
   const productUrl = "http://localhost:5125/api/v1/products";
@@ -87,6 +90,7 @@ function App() {
           isAuthenticated={isAuthenticated}
           shouldCheckAdmin={shouldCheckAdmin}
           userDate={userDate}
+          cart={cart}
         />
       ),
       children: [
@@ -112,7 +116,7 @@ function App() {
         },
         {
           path: "/products/:productId",
-          element: <ProductDetailsPage />,
+          element: <ProductDetailsPage cart={cart} setCart={setCart} />,
         },
         {
           path: "/cart",
@@ -150,9 +154,36 @@ function App() {
             />
           ),
         },
+        {
+          path: "*",
+          element: <NotFoundPage />,
+        },
       ],
     },
   ]);
+   if (loading === true)
+     if (loading) {
+       return (
+         <Box
+           sx={{
+             display: "flex",
+             justifyContent: "center",
+             alignItems: "center",
+             height: "100vh",
+           }}
+         >
+           <CircularProgress size={200} color="#B17939" />
+         </Box>
+       );
+     }
+
+   if (error) {
+     return (
+       <div>
+         <p>An error occurred</p>
+       </div>
+     );
+   }
   return (
   <div>
    <RouterProvider router={router} />

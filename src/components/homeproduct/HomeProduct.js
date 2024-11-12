@@ -62,9 +62,14 @@ export default function HomeProduct({ productList, cart, setCart }) {
     } else {
       // If not in cart, add it with an initial quantity of 1
       setCart([...cart, { ...product, quantity: 1 }]);
+      
     }
   }
-
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+ useEffect(() => {
+   const totalProducts = localStorage.getItem("totalProducts");
+   setCartItemsCount(parseInt(totalProducts) || 0);
+ }, []);
   return (
     <div className="productcontainer">
       <div className="Title">

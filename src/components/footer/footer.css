@@ -65,6 +65,10 @@ span {
 a {
     text-decoration: none;
 }
+.sb_footer-links-a {
+     text-decoration: none;
+     color: white;
+}
 @media (max-width: 768px) {
     .footer-accordion {
       display: block;

@@ -4,7 +4,8 @@ import FavoriteIcon2 from "@mui/icons-material/Favorite";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Link } from "react-router-dom";
 import "./Product.css";
-import image from "../../images/head title.jpeg";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -25,7 +26,8 @@ export default function Products({ productList, cart, setCart }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100000);
-
+const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const handleChange = (event) => {
     setSort(event.target.value);
   };
@@ -49,6 +51,11 @@ export default function Products({ productList, cart, setCart }) {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   }
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+    useEffect(() => {
+      const totalProducts = localStorage.getItem("totalProducts");
+      setCartItemsCount(parseInt(totalProducts) || 0);
+    }, []);
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
   };
@@ -93,7 +100,13 @@ export default function Products({ productList, cart, setCart }) {
   return (
     <div>
       <div className="HeadTitle">
-        <img className="hh" src={image} alt="head title" />
+        <img
+          className="hh"
+          src={
+            "https://i.homeadore.com/wp-content/uploads/2019/06/003-duplex-studio-erez-hyatt-1050x700.avif"
+          }
+          alt="head title"
+        />
         <h1>ALL COLLECTIONS</h1>
         <p className="hhp">HOME | ALL COLLECTIONS</p>
       </div>
@@ -256,6 +269,7 @@ export default function Products({ productList, cart, setCart }) {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }

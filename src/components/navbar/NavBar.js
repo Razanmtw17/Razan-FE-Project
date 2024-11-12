@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NavBar.css';
 import logo from '../../images/full stack logo.png';
 import toggle from '../../images/toggle.png';
@@ -10,18 +10,27 @@ import { Link } from "react-router-dom";
 
 
 export default function NavBar({
-  cartItemsCount,
   isAuthenticated,
   shouldCheckAdmin,
   userDate,
+  cart
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home"); // Set initial active link
-
+const [cartItemsCount, setCartItemsCount] = useState(0);
   const handleToggleClick = () => {
     setIsOpen(!isOpen);
   };
+useEffect(() => {
+  const totalProducts = localStorage.getItem("totalProducts");
+  setCartItemsCount(parseInt(totalProducts) || 0);
+}, []);
 
+// Update cartItemsCount whenever the cart changes
+useEffect(() => {
+  setCartItemsCount(cart.length);
+  localStorage.setItem("totalProducts", cart.length);
+}, [cart]);
   const handleLinkClick = (linkId) => {
     setActiveLink(linkId);
   };

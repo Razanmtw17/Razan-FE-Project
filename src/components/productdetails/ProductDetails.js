@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetails.css";
-import image from '../../images/hero section 1.webp';
+
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -18,60 +18,84 @@ import TabPanel from "@mui/lab/TabPanel";
 import FavoriteIcon2 from "@mui/icons-material/Favorite";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Link } from "react-router-dom";
-export default function ProductDetails() {
-    const params = useParams();
-    let productId = params.productId;
-    let reviewUrl = "http://localhost:5125/api/v1/Reviews/product/" + productId;
-     const relatedProductsUrl = `http://localhost:5125/api/v1/Products/productsBySubcategory/`;
-    const [product, setProduct] = useState(null);
-    const [reviwe, setReviews] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [relatedProducts, setRelatedProducts] = useState([]);
-    const url = "http://localhost:5125/api/v1/products/" + productId;
-    const [quantity, setQuantity] = React.useState(1);
-    const [value, setValue] = React.useState("1");
-    const firstThreeProducts = relatedProducts.slice(0, 3);
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
-     useEffect(() => {
-       const fetchData = async () => {
-         try {
-           const productResponse = await axios.get(
-             `http://localhost:5125/api/v1/products/${productId}`
-           );
-           setProduct(productResponse.data);
+export default function ProductDetails({ cart, setCart }) {
+  const params = useParams();
+  let productId = params.productId;
+  let reviewUrl = "http://localhost:5125/api/v1/Reviews/product/" + productId;
+  const relatedProductsUrl = `http://localhost:5125/api/v1/Products/productsBySubcategory/`;
+  const [product, setProduct] = useState(null);
+  const [reviwe, setReviews] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const url = "http://localhost:5125/api/v1/products/" + productId;
+  const [quantity, setQuantity] = React.useState(1);
+  const [value, setValue] = React.useState("1");
+  const firstThreeProducts = relatedProducts.slice(0, 3);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  function addToCart(product) {
+    // Check if the product is already in the cart
+    const isAlreadyInCart = cart.some(
+      (item) => item.productId === product.productId
+    );
 
-           const reviewsResponse = await axios.get(reviewUrl);
-           setReviews(reviewsResponse.data);
+    if (isAlreadyInCart) {
+      // If already in cart, update the quantity
+      setCart(
+        cart.map((item) =>
+          item.productId === product.productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // If not in cart, add it with an initial quantity of 1
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  }
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    const totalProducts = localStorage.getItem("totalProducts");
+    setCartItemsCount(parseInt(totalProducts) || 0);
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productResponse = await axios.get(
+          `http://localhost:5125/api/v1/products/${productId}`
+        );
+        setProduct(productResponse.data);
 
-           const relatedProductsResponse = await axios.get(
-             relatedProductsUrl + productResponse.data.subCategoryName
-           );
-           setRelatedProducts(relatedProductsResponse.data);
-         } catch (error) {
-           setError(error.message);
-         } finally {
-           setLoading(false);
-         }
-       };
+        const reviewsResponse = await axios.get(reviewUrl);
+        setReviews(reviewsResponse.data);
 
-       fetchData();
-     }, [productId]);
-    console.log(reviewUrl);
-  
-    const handleIncrement = () => {
-      setQuantity(quantity + 1);
-    };
-
-    const handleDecrement = () => {
-      if (quantity > 1) {
-        setQuantity(quantity - 1);
+        const relatedProductsResponse = await axios.get(
+          relatedProductsUrl + productResponse.data.subCategoryName
+        );
+        setRelatedProducts(relatedProductsResponse.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
-   
-    
+
+    fetchData();
+  }, [productId]);
+  console.log(reviewUrl);
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <div>
       {loading && <p>Loading product details...</p>}
@@ -115,7 +139,9 @@ export default function ProductDetails() {
             <IconButton onClick={handleIncrement}>
               <AddIcon />
             </IconButton>
-            <button className="pdcartbutton">ADD&nbsp;TO&nbsp;CART</button>
+            <button nClick={() => addToCart(product)} className="pdcartbutton">
+              ADD&nbsp;TO&nbsp;CART
+            </button>
             <button className="pdwishlist">
               <FavoriteBorderIcon fontSize="small" />
             </button>

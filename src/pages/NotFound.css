@@ -1,0 +1,23 @@
+.not-found-page {
+  text-align: center;
+  padding: 100px;
+}
+
+.not-found-title {
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.not-found-message {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.not-found-button {
+  padding: 10px 20px;
+  background-color: #43D7D7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}

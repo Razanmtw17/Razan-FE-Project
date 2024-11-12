@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import image from "../../images/head title.jpeg";
+import React, {useState , useEffect} from 'react';
 import './Cart.css';
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
@@ -13,6 +12,8 @@ export default function Cart({ cart, setCart }) {
     const [cartItemsCount, setCartItemsCount] = useState(0);
     const [quantity, setQuantity] = React.useState(1);
     const [value, setValue] = React.useState("1");
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
     if (!cart) {
       console.error("Cart prop is undefined");
       return null; // Or display an error message
@@ -35,10 +36,18 @@ const handleAddToCart = (product) => {
   setCart([...cart, product]);
   setCartItemsCount(cartItemsCount + 1);
 };
+
+
   return (
     <div>
       <div className="HeadTitle">
-        <img className="hh" src={image} alt="head title" />
+        <img
+          className="hh"
+          src={
+            "https://i.homeadore.com/wp-content/uploads/2019/06/003-duplex-studio-erez-hyatt-1050x700.avif"
+          }
+          alt="head title"
+        />
         <h1>CART</h1>
       </div>
       {cart.length === 0 ? (
@@ -159,7 +168,6 @@ const handleAddToCart = (product) => {
           </div>
         </div>
       )}
-     
     </div>
   );
 

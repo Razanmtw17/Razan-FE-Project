@@ -3,7 +3,8 @@ import './dashboard.css';
 import axios from 'axios';
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";   
+import MenuItem from "@mui/material/MenuItem"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Snackbar from "@mui/material/Snackbar";
@@ -115,9 +116,9 @@ const handleCreateProduct = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    
+    // Handle success, e.g., show a success message, clear newProduct state
     setSuccess(true);
-    setOpen(true);
+  setOpen(true);
     setNewProduct({
       subCategoryName: "",
       subCategoryId: "",
@@ -257,11 +258,21 @@ const handleCreateProduct = async () => {
                     </button>
                   </>
                 ) : (
-                  <button onClick={() => handleEditClick(row)}>Edit</button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    onClick={() => handleEditClick(row)}
+                    style={{ padding: "3px 10px" }}
+                  >
+                    Edit
+                  </button>
                 )}
               </td>
               <td className="trproduct">
-                <button onClick={() => handleDeleteClick(row.productId)}>
+                <button
+                  class="btn btn-outline-danger"
+                  style={{ padding: "3px 10px" }}
+                  onClick={() => handleDeleteClick(row.productId)}
+                >
                   DELETE
                 </button>
               </td>
