@@ -7,41 +7,49 @@ import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 export default function UserRegister() {
-    const [userInfo , setUserInfo] = useState({username: "" , firstname: "" , lastname:"", birthdate:"",email:"",password:"", phonenumber:0});
-  //url: http://localhost:5125/api/v1/users/register
- const [selectedDate, setSelectedDate] = useState(null);
-const [email, setEmail] = useState("");
-const [emailError, setEmailError] = useState("");
-const [password, setPassword] = useState("");
-const [type, setType] = useState("password");
-const [icon, setIcon] = useState(eyeOff);
-const handleToggle = () => {
-  if (type === "password") {
-    setIcon(eye);
-    setType("text");
-  } else {
-    setIcon(eyeOff);
-    setType("password");
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    firstname: "",
+    lastname: "",
+    birthdate: "",
+    email: "",
+    password: "",
+    phonenumber: 0,
+  });
+  //url: https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/users/register
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+  function onChangeHandlerUsername(event) {
+    setUserInfo({ ...userInfo, username: event.target.value });
   }
-};
- const handleDateChange = (event) => {
-   setSelectedDate(event.target.value);
- };
- function onChangeHandlerUsername(event) {
-    setUserInfo({ ...userInfo, username: event.target.value});
- }
-function onChangeHandlerPhoneNumber(event) {
-  setUserInfo({ ...userInfo, phonenumber: event.target.value });
-}
- function onChangeHandlerFirstname(event) {
-   setUserInfo({ ...userInfo, firstname: event.target.value });
- }
- function onChangeHandlerLastname(event) {
-   setUserInfo({ ...userInfo, lastname: event.target.value });
- }
- function onChangeHandlerBirthdate(event) {
-   setUserInfo({ ...userInfo, birthdate: event.target.value });
- }
+  function onChangeHandlerPhoneNumber(event) {
+    setUserInfo({ ...userInfo, phonenumber: event.target.value });
+  }
+  function onChangeHandlerFirstname(event) {
+    setUserInfo({ ...userInfo, firstname: event.target.value });
+  }
+  function onChangeHandlerLastname(event) {
+    setUserInfo({ ...userInfo, lastname: event.target.value });
+  }
+  function onChangeHandlerBirthdate(event) {
+    setUserInfo({ ...userInfo, birthdate: event.target.value });
+  }
   const onChangeHandlerEmail = (event) => {
     const newEmail = event.target.value;
 
@@ -60,27 +68,28 @@ function onChangeHandlerPhoneNumber(event) {
     setUserInfo({ ...userInfo, password: event.target.value });
   }
   const navigate = useNavigate();
-  function registNewUser(){
-    const userUrl = "http://localhost:5125/api/v1/Users/register";
-    axios.post(userUrl , userInfo)
-    .then((res) => {
-        if(res.status === 200){
-            alert("User Seccessfully created an account");
-            navigate("/login");
+  function registNewUser() {
+    const userUrl =
+      "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Users/register";
+    axios
+      .post(userUrl, userInfo)
+      .then((res) => {
+        if (res.status === 200) {
+          alert("User Seccessfully created an account");
+          navigate("/login");
         }
-    })
-    .catch((err) => {
-        console.log(err , "err from post");
-        if(err.status === 400){
-            if (err.response.data.message) {
-              alert(err.response.data.message);
-              return;
-            }
+      })
+      .catch((err) => {
+        console.log(err, "err from post");
+        if (err.status === 400) {
+          if (err.response.data.message) {
+            alert(err.response.data.message);
+            return;
+          }
         }
-
-    });
+      });
   }
- 
+
   return (
     <div>
       <div className="signupdiv">

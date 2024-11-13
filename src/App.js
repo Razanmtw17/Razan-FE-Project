@@ -17,8 +17,9 @@ import DashBord from "./components/dashboard/DashBord";
 import CircularProgress from "@mui/material/CircularProgress";
 import NotFoundPage from "./pages/NotFoundPage";
 function App() {
-  const url="http://localhost:5125/";
-  const productUrl = "http://localhost:5125/api/v1/products";
+  const url = "https://sda-3-online-backend-teamwork-1xdo.onrender.com/";
+  const productUrl =
+    "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/products";
   const [respone, setResponse] = useState("");
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,17 +64,23 @@ function App() {
   const [isUserDataLoading , setIsUserDataLoading] = useState(true);
   function getUserDate(){
     const token = localStorage.getItem("token");
-    axios.get("http://localhost:5125/api/v1/Users/auth", {
-      headers : {
-        Authorization: `Bearer ${token}`,
-      }
-    }).then((res) => {
-      setUserDate(res.data);
-      setIsUserDataLoading(false);
-    }).catch((err) => {
-      setIsUserDataLoading(false);
-      console.log(err);
-    });
+    axios
+      .get(
+        "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Users/auth",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setUserDate(res.data);
+        setIsUserDataLoading(false);
+      })
+      .catch((err) => {
+        setIsUserDataLoading(false);
+        console.log(err);
+      });
   }
   useEffect(() => {
     getUserDate();

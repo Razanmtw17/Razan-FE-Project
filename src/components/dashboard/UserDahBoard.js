@@ -14,7 +14,8 @@ export default function UserDahBoard() {
   const [displayedUsers, setDisplayedUsers] = useState([]);
   const [open, setOpen] = useState(false);
   const now = new Date();
-  const userUrl = "http://localhost:5125/api/v1/users";
+  const userUrl =
+    "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/users";
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -66,7 +67,7 @@ export default function UserDahBoard() {
   const handleDeleteClick = async (userId) => {
     try {
       const token = localStorage.getItem("token");
-      const url = `http://localhost:5125/api/v1/users/${userId}`;
+      const url = `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/users/${userId}`;
       await axios.delete(url);
       setOpen(true);
        const response = await axios.get(userUrl, {

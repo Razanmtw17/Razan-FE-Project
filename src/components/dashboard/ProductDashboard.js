@@ -39,7 +39,7 @@ const [success, setSuccess] = useState(false);
   const handleSaveChanges = async () => {
     try {
       const token = localStorage.getItem("token");
-      const url = `http://localhost:5125/api/v1/Products/${editedProduct.productId}`;
+      const url = `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Products/${editedProduct.productId}`;
       await axios.put(url, editedProduct, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ const [success, setSuccess] = useState(false);
     const fetchSubcategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5125/api/v1/subcategories"
+          "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/subcategories"
         ); 
         setSubcategories(response.data);
       } catch (error) {
@@ -95,7 +95,7 @@ const [success, setSuccess] = useState(false);
 const handleDeleteClick = async (productId) => {
   try {
     const token = localStorage.getItem("token");
-    const url = `http://localhost:5125/api/v1/Products/${productId}`;
+    const url = `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Products/${productId}`;
     await axios.delete(url, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -110,7 +110,7 @@ const handleDeleteClick = async (productId) => {
 const handleCreateProduct = async () => {
   try {
     const token = localStorage.getItem("token");
-    const url = `http://localhost:5125/api/v1/Products`;
+    const url = `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Products`;
     await axios.post(url, newProduct, {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -130,7 +130,7 @@ export default function UserProfile({ userDate, setUserDate }) {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5125/api/v1/Users/${userDate.userId}`,
+        `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Users/${userDate.userId}`,
         updatedUserData
       );
       const updatedUser = response.data;
@@ -147,7 +147,7 @@ export default function UserProfile({ userDate, setUserDate }) {
   const handleDeleteClick = async () => {
     try {
       await axios.delete(
-        `http://localhost:5125/api/v1/Users/${userDate.userId}`
+        `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Users/${userDate.userId}`
       );
       console.log("User deleted successfully");
       navigate("/"); // Redirect to homepage
@@ -219,7 +219,7 @@ export default function UserProfile({ userDate, setUserDate }) {
       // Send API request to update password
 
       const response = await axios.put(
-        `http://localhost:5125/api/v1/Users/${userDate.userId}`,
+        `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Users/${userDate.userId}`,
         {
           newPassword,
         }

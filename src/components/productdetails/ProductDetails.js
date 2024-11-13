@@ -21,14 +21,18 @@ import { Link } from "react-router-dom";
 export default function ProductDetails({ cart, setCart }) {
   const params = useParams();
   let productId = params.productId;
-  let reviewUrl = "http://localhost:5125/api/v1/Reviews/product/" + productId;
-  const relatedProductsUrl = `http://localhost:5125/api/v1/Products/productsBySubcategory/`;
+  let reviewUrl =
+    "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Reviews/product/" +
+    productId;
+  const relatedProductsUrl = `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/Products/productsBySubcategory/`;
   const [product, setProduct] = useState(null);
   const [reviwe, setReviews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const url = "http://localhost:5125/api/v1/products/" + productId;
+  const url =
+    "https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/products/" +
+    productId;
   const [quantity, setQuantity] = React.useState(1);
   const [value, setValue] = React.useState("1");
   const firstThreeProducts = relatedProducts.slice(0, 3);
@@ -71,7 +75,7 @@ export default function ProductDetails({ cart, setCart }) {
     const fetchData = async () => {
       try {
         const productResponse = await axios.get(
-          `http://localhost:5125/api/v1/products/${productId}`
+          `https://sda-3-online-backend-teamwork-1xdo.onrender.com/api/v1/products/${productId}`
         );
         setProduct(productResponse.data);
 
