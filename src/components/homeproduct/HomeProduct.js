@@ -43,15 +43,11 @@ export default function HomeProduct({ productList, cart, setCart }) {
 
 
 
-  console.log('products:', productList);
   function addToCart(product) {
-    // Check if the product is already in the cart
     const isAlreadyInCart = cart.some(
       (item) => item.productId === product.productId
     );
-
     if (isAlreadyInCart) {
-      // If already in cart, update the quantity
       setCart(
         cart.map((item) =>
           item.productId === product.productId
@@ -60,7 +56,6 @@ export default function HomeProduct({ productList, cart, setCart }) {
         )
       );
     } else {
-      // If not in cart, add it with an initial quantity of 1
       setCart([...cart, { ...product, quantity: 1 }]);
       
     }

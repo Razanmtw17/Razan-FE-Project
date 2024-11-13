@@ -40,12 +40,6 @@ export default function ProductDetails({ cart, setCart }) {
     setValue(newValue);
   };
    function addToCart(product) {
-     console.log("Before cart update:", cart);
-     if (!cart) {
-       console.error("Cart state is undefined");
-       return;
-     }
-
      const isAlreadyInCart = cart.some(
        (item) => item.productId === product.productId
      );
@@ -60,8 +54,6 @@ export default function ProductDetails({ cart, setCart }) {
          )
        );
      } else {
-       // If not in cart, add it with an initial quantity of 1
-        console.log("Before cart update:", cart);
        setCart([...cart, { ...product, quantity: 1 }]);
      }
    }

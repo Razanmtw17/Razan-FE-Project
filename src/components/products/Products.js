@@ -32,13 +32,10 @@ const [loading, setLoading] = useState(true);
     setSort(event.target.value);
   };
   function addToCart(product) {
-    // Check if the product is already in the cart
     const isAlreadyInCart = cart.some(
       (item) => item.productId === product.productId
     );
-
     if (isAlreadyInCart) {
-      // If already in cart, update the quantity
       setCart(
         cart.map((item) =>
           item.productId === product.productId
@@ -47,7 +44,6 @@ const [loading, setLoading] = useState(true);
         )
       );
     } else {
-      // If not in cart, add it with an initial quantity of 1
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   }
