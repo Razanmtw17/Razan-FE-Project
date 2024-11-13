@@ -102,25 +102,25 @@ export default function UserRegister() {
         </p>
         <div className="formdiv">
           <form className="registerform">
-            <label for="UserName">User Name :</label>
+            <label htmlfor="UserName">User Name :</label>
             <input type="text" onChange={onChangeHandlerUsername} required />
-            <label for="first name">First Name :</label>
+            <label htmlfor="first name">First Name :</label>
             <input type="text" required onChange={onChangeHandlerFirstname} />
-            <label for="last name">Last Name :</label>
+            <label htmlfor="last name">Last Name :</label>
             <input type="text" required onChange={onChangeHandlerLastname} />
-            <label for="phone number">Phone Number :</label>
+            <label htmlfor="phone number">Phone Number :</label>
             <input type="text" required onChange={onChangeHandlerPhoneNumber} />
-            <label for="birthdate">Birth Date:</label>
+            <label htmlfor="birthdate">Birth Date:</label>
             <input
               type="date"
               value={selectedDate}
               onChange={(handleDateChange, onChangeHandlerBirthdate)}
               required
             />
-            <label for="email">Email :</label>
+            <label htmlfor="email">Email :</label>
             <input type="text" required onChange={onChangeHandlerEmail} />
             {emailError && <p style={{ color: "red" }}>{emailError}</p>}
-            <label for="password">Password:</label>
+            <label htmlfor="password">Password:</label>
 
             <div className="revelpass">
               <input

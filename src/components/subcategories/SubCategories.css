@@ -14,7 +14,7 @@
     position: relative;
 }
 .subcategoryitem:nth-child(1) {
-    background-image: url('../../images/sub\ category\ light.png');
+    background-image: url('../../images/sub category light.png');
     background-size: cover;
     background-position: center;
     height: 626px;
@@ -55,7 +55,7 @@
     font-weight: 100;
 }
 .subcategoryitem:nth-child(2) .subitem:nth-child(2) {
-    background-image: url('../../images/sub\ category\ night\ stand.png');
+    background-image: url('../../images/sub category night stand.png');
   background-size: cover;
   background-position: center;
 }
@@ -72,12 +72,12 @@
     transition: all 1s ease-in-out;
 }
 .subcategoryitem:nth-child(3) .subitem:nth-child(1) {
-    background-image: url('../../images/sub\ category\ table.png');
+    background-image: url('../../images/sub category table.png');
   background-size: cover;
   background-position: center;
 }
 .subcategoryitem:nth-child(3) .subitem:nth-child(2) {
-    background-image: url('../../images/sub\ category\ outdoor\ chair.png');
+    background-image: url('../../images/sub category outdoor chair.png');
   background-size: cover;
   background-position: center;
 }
